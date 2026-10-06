@@ -1,0 +1,172 @@
+\documentclass[a4paper]{article}
+
+\def\nbook {Introduction to Quantum Mechanics \\ Second Edition}
+\def\nbookshort {Griffiths Quantum Mechanics}
+
+% Shared preamble. The fallback lets the document build whether the working
+% directory is its own folder or the project root.
+\IfFileExists{headerintroquantummechanics.tex}{\input{headerintroquantummechanics}}{\input{../headerintroquantummechanics}}
+
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{\textsf{1 - The Wave Function}}
+\subsection{\textsf{1.3 - Probability}}
+
+\qs{1.1}{For the distribution of ages in Section 1.3.1:
+\begin{enumerate}[label=(\alph*)]
+	\item Compute \( \braket{j^{2}} \) and \( \braket{j}^{2} \).
+	\item Determine \( \Delta j \) for each  \( j \), and use Equation 1.11 to compute the standard deviation.
+	\item Use your results in (a) and (b) to check Equation 1.12.
+\end{enumerate}}
+
+The data is
+\begin{align*}
+	N \!\left( 14 \right) & = 1 \\
+	N \!\left( 15 \right) & = 1 \\ 
+	N \!\left( 16 \right) & = 3 \\
+	N \!\left( 22 \right) & = 2 \\
+	N \!\left( 24 \right) & = 2 \\
+	N \!\left( 25 \right) & = 5
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+	\item Our sample size is \( N = 14 \). Compute
+	\begin{align*}
+		\braket{j^{2}} & = \sum_{j}j^{2}P \!\left( j \right) \\
+			       & = \frac{14^{2} \cdot 1 + 15^{2} \cdot 1 + 16^{2} \cdot 3 + 22^{2} \cdot 2 + 24^{2} \cdot 2 + 25^{2} \cdot 5}{14} \\
+			       & = \frac{3217}{7} \approx 459.6 \\
+		\braket{j}^{2} & = \!\left[ \sum_{j}j P \!\left( j \right) \right]^{2} \\
+			       & = \!\left( \frac{14 \cdot 1 + 15 \cdot 1 + 16 \cdot 3 + 22 \cdot 2 + 24 \cdot 2 + 25 \cdot 5}{14} \right)^{2} \\
+			       & = \!\left( \frac{147}{7} \right)^{2} = 21^{2} = 441
+	\end{align*}
+	Taking the difference produces the variance:
+	\[
+		\sigma^{2} = \braket{j^{2}} - \braket{j}^{2} = \frac{3217}{7} - 441 = \frac{130}{7} \approx18.6
+	\]
+	\item Compute
+	\begin{align*}
+		\sigma^{2} & = \braket{\!\left( \Delta j \right)^{2}} = \sum_{j}\!\left( \Delta j \right)^{2}P \!\left( j \right) \\
+			   & = \frac{\!\left( 14 - 21 \right)^{2} \cdot 1 + \!\left( 15 - 21 \right)^{2} \cdot 1 + \!\left( 16 - 21 \right)^{2} \cdot 3 + \!\left( 22 - 21 \right)^{2} \cdot 2}{14} \\
+			   & \qquad + \frac{\!\left( 24 - 21 \right)^{2} \cdot 2 + \!\left( 25 - 21 \right)^{2} \cdot 5}{14} \\ 
+		 & = \frac{130}{7} \approx 18.6 \\
+		\sigma & = \sqrt{130 / 7} \approx 4.3
+	\end{align*}
+	\item The computations confirm \( \braket{\!\left( \Delta j \right)^{2}} = \braket{j^{2}} - \braket{j}^{2} \). Rooting gives us standard deviation \( \sqrt{130 / 7} \approx 4.3 \).
+\end{enumerate}
+
+% QUESTION 2
+\qs{1.2}{\begin{enumerate}[label=(\alph*)]
+	\item Find the standard deviation of the distribution in Example 1.1.
+	\item What is the probability that a photograph, selected at random, would show a distance \( x \) more than one standard deviation away from the average?
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Using formula (1.12),
+	\begin{align*}
+		\braket{x^{2}} & = \int^{h}_{0} x^{2}\frac{1}{2 \sqrt{hx}} \, dx \\
+		 & = \frac{1}{2 \sqrt{h}}\!\left( \frac{2}{5}x^{5/2} \right)\bigg|^{h}_{0} \\
+		 & = \frac{h^{2}}{5}
+	\end{align*}
+	And since \( \braket{x} = h / 3 \), we have \( \braket{x}^{2} = h^{2} / 9 \). Then compute
+	\[
+		\sigma = \sqrt{\braket{x^{2}} - \braket{x}^{2}} = \sqrt{\frac{h^{2}}{5} - \frac{h^{2}}{9}} = \sqrt{\frac{4h^{2}}{45}} = \frac{2h}{3 \sqrt{5}}
+	\]
+\item We integrate the probability density over interval: \( \!\left[ h \!\left( 1/3 - 2 / 3 \sqrt{5} \right), h \!\left( 1/3 + 2 / 3 \sqrt{5} \right) \right] \)\footnote{The bounds fall within \( \!\left[ 0,h \right] \), as \( h \!\left( 1/3 - 2/3 \sqrt{5} \right) \approx 0.0352h \) and \( h \!\left( 1/3 + 2 / 3 /\sqrt{5} \right) \approx 0.6315h \).} for the intermediate step:
+	\begin{align*}
+		\int^{h \!\left( 1/3 + 2 / 3 \sqrt{5} \right)}_{h \!\left( 1/3 - 2 / 3 \sqrt{5} \right)} \frac{1}{2 \sqrt{hx}} \, dx & = \frac{1}{2 \sqrt{h}}\!\left( 2x^{1/2} \right)\bigg|^{h \!\left( 1/3 + 2 / 3 \sqrt{5} \right)}_{h \!\left( 1/3 - 2 / 3 \sqrt{5} \right)} \\
+																     & = \sqrt{\underbrace{\frac{1}{3} + \frac{2}{3 \sqrt{5}}}_{A}} - \sqrt{\underbrace{\frac{1}{3} - \frac{2}{3 \sqrt{5}}}_{B}}
+	\end{align*}
+	Observing that \( \!\left( \sqrt{A} - \sqrt{B} \right)^{2} = A + B - 2 \sqrt{AB} \), compute and take the square root to simplify to
+	\[
+		\frac{2}{3} - 2 \sqrt{\frac{1}{9} - \frac{4}{45}} = \frac{2}{3} - \frac{2}{3 \sqrt{5}} \quad \implies \quad \sqrt{A} - \sqrt{B} = \sqrt{\frac{2}{3} - \frac{2}{3 \sqrt{5}}} \approx 0.607
+	\]
+	Lastly, subtracting from 1 yields a probability of \( \approx 0.4 \).
+\end{enumerate}
+
+% QUESTION 3
+\qs{1.3}{Consider the \textbf{gaussian} distribution
+\[
+	\rho \!\left( x \right) = Ae^{-\lambda \!\left( x - a \right)^{2}} 
+\]
+where \( A \), \( a \), and \( \lambda \) are positive real constants. (Look up any integrals you need.)
+\begin{enumerate}[label=(\alph*)]
+	\item Use Equation 1.16 to determine \( A \).
+	\item Find \( \braket{x} \), \( \braket{x^{2}} \), and \( \sigma \).
+	\item Sketch the graph of \( \rho \!\left( x \right) \).
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item From Equation 1.16, we require
+	\[
+		\int^{\infty}_{-\infty} Ae^{-\lambda \!\left( x - a \right)^{2}} \, dx = 1  
+	\]
+	For simplicity, let \( u = x - a \). Then use the result
+	\[
+		\int^{\infty}_{-\infty} e^{-\lambda x^{2}} \, dx = \sqrt{\frac{\pi}{\lambda}}  
+	\]
+	to deduce
+	\[
+		\int^{\infty}_{-\infty} Ae^{-\lambda u^{2}} \, du =  A \sqrt{\frac{\pi}{\lambda}} = 1 \quad \implies \quad A = \sqrt{\frac{\lambda}{\pi}}
+	\]
+	The intuition behind this substitution, which horizontally shifts \( \rho \!\left( x \right) \) by \( a \), is that the area underneath the Gaussian is independent of horizontal translation.
+	\item To compute \( \braket{x} \), make the same substitution \( u = x - a \). Then \( x = u + a \), and we compute 
+	\[
+		\braket{x} = \int^{\infty}_{-\infty} Axe^{-\lambda \!\left( x - a \right)^{2}} \, dx = A \!\left[ \int^{\infty}_{-\infty} ue^{-\lambda u^{2}} \, du + \int^{\infty}_{-\infty} ae^{-\lambda u^{2}} \, du \right] = a 
+	\]
+	By antisymmetry of the first integrand about \( x = a \), the first term evaluates to zero (put differently, odd in \( u \)). The second is simply the normalized Gaussian with a scale factor, leaving only \( a \).
+
+	Next we have
+	\begin{align*}
+		\braket{x^{2}} & = \int^{\infty}_{-\infty} Ax^{2}e^{-\lambda \!\left( x - a \right)^{2}} \, dx \\
+			       & = A \!\left[ \int^{\infty}_{-\infty} u^{2}e^{-\lambda u^{2}} \, du + 2a \int^{\infty}_{-\infty} u e^{-\lambda u^{2}} \, du + \int^{\infty}_{-\infty} a^{2}e^{-\lambda u^{2}} \, du \right] \\
+			       & = \frac{1}{2 \lambda} + a^{2}
+	\end{align*}
+	where we can conclude
+	\[
+		\sigma = \sqrt{\braket{x^{2}} - \braket{x}^{2}} = \frac{1}{\sqrt{2 \lambda}} 
+	\]
+	\item \includegraphics[width=1.0\textwidth]{../chap1/chap1ex1.3c.pdf}
+\end{enumerate}
+
+\newpage
+% QUESTION 4
+\qs{1.4}{At time \( t = 0 \) a particle is represented by the wave function
+\[
+	\Psi \!\left( x,0 \right) = \begin{cases}
+		\displaystyle{A \frac{x}{a}}, & \text{if } 0 \le x \le a, \\[10pt]
+		\displaystyle{A \frac{\!\left( b - x \right)}{\!\left( b - a \right)}}, & \text{if } a \le x \le b, \\[10pt]
+		0, & \text{otherwise}
+	\end{cases} 
+\]
+where \( A \), \( a \), and \( b \) are constants.
+\begin{enumerate}[label=(\alph*)]
+	\item Normalize \( \Psi \) (that is, find \( A \), in terms of \( a \) and \( b \)).
+	\item Sketch \( \Psi \!\left( x,0 \right) \), as a function of \( x \).
+	\item Where is the particle most likely to be found, at \( t = 0 \)?
+	\item What is the probability of finding the particle to the left of \( a \)? Check your result in the limiting cases \( b = a \) and \( b = 2a \).
+	\item What is the expectation value of \( x \)?
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Normalizing the square-integrable wave function requires
+	\[
+		A^{2} \!\left[ \int^{a}_{0} \abs{\frac{x}{a}}^{2} \, dx + \int^{b}_{a} \!\left( \frac{b - x}{b - a} \right)^{2} \, dx \right] = 1
+	\]
+	We start by computing the integrals, which gets you
+	\begin{align*}
+		\int^{a}_{0} \!\left( \frac{x}{a} \right)^{2} \, dx + \int^{b}_{a} \!\left( \frac{b - x}{b - a} \right)^{2} \, dx & = \frac{x^{3}}{3a^{2}}\bigg|^{a}_{0} - \frac{\!\left( b - x \right)^{3}}{3 \!\left( b - a \right)^{2}}\bigg|^{b}_{a} \\
+		 & = \frac{a}{3} + \frac{b - a}{3} \\ 
+		 & = \frac{b}{3}
+	\end{align*}
+	and leads to
+	\[
+		A^{2} = \frac{3}{b} \quad \implies \quad A = \sqrt{\frac{3}{b}} 
+	\]
+	\item 
+\end{enumerate}
+
+\end{document}
