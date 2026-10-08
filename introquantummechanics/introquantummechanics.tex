@@ -129,10 +129,11 @@ where \( A \), \( a \), and \( \lambda \) are positive real constants. (Look up 
 	\[
 		\sigma = \sqrt{\braket{x^{2}} - \braket{x}^{2}} = \frac{1}{\sqrt{2 \lambda}} 
 	\]
-	\item \includegraphics[width=1.0\textwidth]{../chap1/chap1ex1.3c.pdf}
+	\item \includegraphics[width=0.9\textwidth]{../chap1/chap1ex1.3c.pdf}
 \end{enumerate}
 
 \newpage
+\subsection{\textsf{1.4 - Normalization}}
 % QUESTION 4
 \qs{1.4}{At time \( t = 0 \) a particle is represented by the wave function
 \[
@@ -153,9 +154,11 @@ where \( A \), \( a \), and \( b \) are constants.
 
 \begin{enumerate}[label=(\alph*)]
 	\item Normalizing the square-integrable wave function requires
-	\[
-		A^{2} \!\left[ \int^{a}_{0} \abs{\frac{x}{a}}^{2} \, dx + \int^{b}_{a} \!\left( \frac{b - x}{b - a} \right)^{2} \, dx \right] = 1
-	\]
+	\begin{align*}
+		\int^{b}_{0} \abs{\Psi \!\left( x,0 \right)}^{2} \, dx & = \int^{b}_{0} \Psi^{*}\Psi \, dx \\
+								       & = \abs{A}^{2} \!\left[ \int^{a}_{0} \!\left( \frac{x}{a} \right)^{2} \, dx + \int^{b}_{a} \!\left( \frac{b - x}{b - a} \right)^{2} \, dx \right] \\
+													 & = 1
+	\end{align*}
 	We start by computing the integrals, which gets you
 	\begin{align*}
 		\int^{a}_{0} \!\left( \frac{x}{a} \right)^{2} \, dx + \int^{b}_{a} \!\left( \frac{b - x}{b - a} \right)^{2} \, dx & = \frac{x^{3}}{3a^{2}}\bigg|^{a}_{0} - \frac{\!\left( b - x \right)^{3}}{3 \!\left( b - a \right)^{2}}\bigg|^{b}_{a} \\
@@ -164,9 +167,289 @@ where \( A \), \( a \), and \( b \) are constants.
 	\end{align*}
 	and leads to
 	\[
-		A^{2} = \frac{3}{b} \quad \implies \quad A = \sqrt{\frac{3}{b}} 
+		\abs{A}^{2} = \frac{3}{b} \quad \implies \quad \abs{A} = A = \sqrt{\frac{3}{b}} 
+	\]
+	where we select the positive root by convention.
+	\item \includegraphics[width=0.9\textwidth]{../chap1/chap1ex1.4b.pdf}
+\item From the plot in part (b), the particle is most likely to be found at \( x = a \); since \( \Psi \!\left( x,0 \right) \ge 0 \), it follows that \( \argmax_{x} \Psi(x,0) = \argmax_{x} \abs{\Psi(x,0)}^{2} = a \).
+	\item The probability that the particle is found within \( 0 \le x \le a \) is given by integrating \( \abs{\Psi \!\left( x,0 \right)}^{2} \) over that interval:
+	\[
+		P \!\left( 0 \le x \le a \right) = \frac{3}{b}\int^{a}_{0} \!\left( \frac{x}{a} \right)^{2} \, dx = \frac{3}{b}\!\left( \frac{x^{3}}{3a^{2}} \right)\bigg|^{a}_{0} = \frac{a}{b}
+	\]
+	When \( a = b \), \( P = 1 \), which is physically sensible as the particle must fall within \( \!\left[ 0,b \right] \). When \( a = b/2 \), \( P = 1/2 \), and \( \Psi \!\left( x,0 \right) \) is an isosceles triangle bisected down \( x = b/2 \).
+	\item Derive
+	\begin{align*}
+		\braket{x} & = \int^{b}_{a} x \!\left( \Psi^{*}\Psi \right) \, dx  \\
+			   & = \frac{3}{b}\!\left[ \int^{a}_{0} x \!\left( \frac{x}{a} \right)^{2} \, dx + \int^{b}_{a} x \!\left( \frac{b - x}{b - a} \right)^{2} \, dx \right] \\
+			   & = \frac{3}{b} \!\left[ \frac{x^{4}}{4a^{2}}\bigg|^{a}_{0} - \frac{1}{\!\left( b - a \right)^{2}}\!\left( \frac{b \!\left( b - x \right)^{3}}{3} - \frac{\!\left( b - x \right)^{4}}{4} \right)\bigg|^{b}_{a} \right] \\
+			   & = \frac{3}{b}\!\left( \frac{a^{2}}{4} + \frac{b \!\left( b - a \right)}{3} - \frac{\!\left( b - a \right)^{2}}{4} \right) \\
+			   & = \frac{1}{4b}\!\left( 3a^{2} + 4b^{2} - 4ab - 3b^{2} + 6ab - 3a^{2} \right) \\
+			   & = \frac{2ab + b^{2}}{4b} \\
+			   & = \frac{2a + b}{4}
+	\end{align*}
+\end{enumerate}
+
+% QUESTION 5
+\qs{1.5}{Consider the wave function
+\[
+	\Psi \!\left( x,t \right) = Ae^{-\lambda \abs{x}}e^{-i \omega t} 
+\]
+where \( A \), \( \lambda \), and \( \omega \) are positive real constants. (We'll see in Chapter 2 what potential (\( V \)) actually produces such a wave function.)
+\begin{enumerate}[label=(\alph*)]
+	\item Normalize \( \Psi \).
+	\item Determine the expectation values of \( x \) and \( x^{2} \).
+	\item Find the standard deviation of \( x \). Sketch the graph of \( \abs{\Psi}^{2} \), as a function of \( x \), and mark the points \( \left( \braket{x} + \sigma \right) \) and \( \!\left( \braket{x} - \sigma \right) \), to illustrate the sense in which \( \sigma \) represents the ``spread'' in \( x \). What is the probability that the particle would be found outside this range?
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item We require
+	\begin{align*}
+		\int^{\infty}_{-\infty} \abs{\Psi \!\left( x,t \right)}^{2} \, dx & = \int^{\infty}_{-\infty} \Psi^{*}\Psi \, dx \\
+							 & = \abs{A}^{2}\int^{\infty}_{-\infty} \!\left( e^{-\lambda \abs{x}}e^{-i \omega t} \right) \!\left( e^{-\lambda \abs{x}}e^{i \omega t} \right)\, dx \\
+							 & = 2 \abs{A}^{2}\int^{\infty}_{0} e^{-2 \lambda x} \, dx \\
+						         & = 1
+	\end{align*}
+	Solving for \( A \) yields
+	\begin{align*}
+		2 \abs{A}^{2}\int^{\infty}_{0} e^{-2 \lambda x} \, dx & = -\abs{A}^{2}\frac{e^{-2 \lambda x}}{\lambda}\bigg|^{\infty}_{0} \\
+							      & = \frac{\abs{A}^{2}}{\lambda} = 1 \\
+		\implies A & = \sqrt{\lambda}
+	\end{align*}
+	where by premise, \( A \) is positive.
+	\item Compute
+	\begin{align*}
+		\braket{x} & = \lambda\int^{\infty}_{-\infty} x \!\left( e^{-\lambda \abs{x}}e^{-i \omega t} \right)\!\left( e^{-\lambda \abs{x}}e^{i \omega t} \right) \, dx \\
+		 & = \lambda\int^{\infty}_{-\infty} xe^{-2 \lambda \abs{x}} \, dx \\ 
+		 & = 0 \\
+		\braket{x^{2}} & = \lambda\int^{\infty}_{-\infty} x^{2} \!\left( e^{-\lambda \abs{x}}e^{-i \omega t} \right)\!\left( e^{-\lambda \abs{x}}e^{i \omega t} \right) \, dx \\
+			       & = 2 \lambda \int^{\infty}_{0} x^{2}e^{-2 \lambda x} \, dx \\
+			       & = -e^{-2 \lambda x}\!\left( x^{2} + \frac{x}{\lambda} + \frac{1}{2 \lambda^{2}} \right)\bigg|^{\infty}_{0} \\
+			       & = \frac{1}{2 \lambda^{2}}
+	\end{align*}
+	where antisymmetry about the origin causes the mean \( \braket{x} \) to vanish and integration by parts leads to the result for \( \braket{x^{2}} \).
+	\item Derive the standard deviation as 
+	\[
+		\sigma = \sqrt{\braket{x^{2}} - \braket{x}^{2}} = \frac{1}{\sqrt{2} \lambda} 
+	\]
+	Plotting the probability density: 
+	\begin{center}
+	\includegraphics[width=0.9\textwidth]{../chap1/chap1ex1.5c.pdf}
+	\end{center}
+	It is easy to see that appealing to the symmetry of the density, the probability that the particle is found beyond one standard deviation of the mean is
+	\begin{align*}
+		P \!\left( \sigma \le x \right) + P \!\left( x \le -\sigma \right) & = 2 \lambda\int^{\infty}_{+\sigma} e^{-2 \lambda x} \, dx \\
+		 & = -e^{-2 \lambda x}\Big|^{\infty}_{+\sigma} \\ 
+		 & = e^{-\sqrt{2}} \approx 0.243
+	\end{align*}
+\end{enumerate}
+
+\newpage
+\subsection{\textsf{1.5 - Momentum}}
+% QUESTION 6
+\qs{1.6}{Why can't you do integration-by-parts directly on the middle expression in Equation 1.29 -- pull the time derivative over onto \( x \), note that \( \partial x / \partial t = 0 \), and conclude that \( d \braket{x} / dt = 0 \)?}
+
+Equation 1.29 says
+\[
+	\frac{d \braket{x}}{d t} = \int x \frac{\partial }{\partial t}\abs{\Psi}^{2} \, dx = \frac{i \hbar}{2m}\int x \frac{\partial }{\partial x}\!\left( \Psi^{*}\frac{\partial \Psi}{\partial x} - \frac{\partial \Psi^{*}}{\partial x}\Psi \right) \, dx 
+\]
+Consider the product rule
+\[
+	\frac{\partial }{\partial t}\!\left( x \abs{\Psi}^{2} \right) = \abs{\Psi}^{2}\frac{\partial x}{\partial t} + x \frac{\partial \abs{\Psi}^{2}}{\partial t} = x \frac{\partial }{\partial t}\abs{\Psi}^{2}
+\]
+In this case, \( x \) is not parameterized by \( t \), so \( \partial x / \partial t = 0 \), but the second term still remains. Our variable of integration, however, is \( x \), \textit{not} \( t \). If we were to integrate over \( x \):
+\[
+	\frac{d \braket{x}}{d t} = \int \frac{\partial }{\partial t}\!\left( x \abs{\Psi}^{2} \right) \, dx = \int x \frac{\partial }{\partial t}\abs{\Psi}^{2} \, dx
+\]
+which merely returns us to the middle part of Equation 1.29. On this alone, we would not be able to conclude that the last term is zero, and as such, we cannot conclude \( d \braket{x} / dt = 0 \).
+
+\newpage
+
+% QUESTION 7
+\qs{1.7}{Calculate \( d \braket{p} / dt \). \textit{Answer}:
+\[
+	\frac{d \braket{p}}{d t} = \braket{-\frac{\partial V}{\partial x}} 
+\]
+Equations 1.32 (or the first part of 1.33) and 1.38 are instances of \textbf{Ehrenfest's theorem}, which tells us that \textit{expectation values obey classical laws}.}
+
+Compute, by way of Leibniz's rule
+\begin{align*}
+	\frac{d \braket{p}}{d t} & = -i \hbar \frac{d }{d t}\int \Psi^{*}\frac{\partial \Psi}{\partial x} \, dx = -i \hbar \int \frac{\partial }{\partial t}\!\left( \Psi^{*}\frac{\partial \Psi}{\partial x} \right) \, dx \\
+				 & = -i \hbar \int \!\left( \frac{\partial \Psi^{*}}{\partial t}\frac{\partial \Psi}{\partial x} + \Psi^{*}\underbrace{\frac{\partial }{\partial t}\frac{\partial \Psi}{\partial x}}_{= \frac{\partial }{\partial x}\frac{\partial \Psi}{\partial t}} \right) \, dx \\ 
+				 & = -i \hbar \int \!\left[ \!\left( -\frac{i \hbar}{2m}\frac{\partial^2 \Psi^{*}}{\partial x^2} + \frac{i}{\hbar}V \Psi^{*} \right)\frac{\partial \Psi}{\partial x} + \Psi^{*}\frac{\partial }{\partial x}\!\left( \frac{i \hbar}{2m}\frac{\partial^2 \Psi}{\partial x^2} - \frac{i}{\hbar}V \Psi \right) \right] \, dx \\
+	 & = -\frac{\hbar^{2}}{2m}\int \!\left( \frac{\partial^2 \Psi^{*}}{\partial x^2}\frac{\partial \Psi}{\partial x} - \Psi^{*}\frac{\partial^3 \Psi}{\partial x^3} \right) \, dx + \int \!\left( V \Psi^{*}\frac{\partial \Psi}{\partial x} - \Psi^{*}\frac{\partial }{\partial x}\!\left( V \Psi \right) \right) \, dx \\
+	 & = \int \!\left[ \underbrace{\!\left( V \Psi^{*}\frac{\partial \Psi}{\partial x} - V \Psi^{*}\frac{\partial \Psi}{\partial x} \right)}_{= 0} - \Psi^{*}\Psi \frac{\partial V}{\partial x} \right] \, dx \\
+	 & = -\int \frac{\partial V}{\partial x}\abs{\Psi}^{2} \, dx \\
+	 & = \braket{-\frac{\partial V}{\partial x}}
+\end{align*}
+where in going from the fourth line to the fifth we use the fact that \( \Psi, \Psi^{*} \rightarrow 0 \) along with their first derivative as \( x \rightarrow \pm \infty \).
+
+\vspace{12pt}
+
+% QUESTION 8
+\qs{1.8}{Suppose you add a constant \( V_{0} \) to the potential energy (by ``constant'' I mean independent of \( x \) as well as \( t \)). In \textit{classical} mechanics this doesn't change anything, but what about \textit{quantum mechanics}? Show that the wave function picks up a time-dependent phase factor: \( \exp \!\left( -iV_{0}t / \hbar \right) \). What effect does this have on the expectation value of a dynamical variable?}
+
+In essence, we wish to prove that for the Schr\"odinger equation with an added constant potential energy term
+\[
+	i \hbar \frac{\partial \tilde{\Psi}}{\partial t} = -\frac{\hbar^{2}}{2m}\frac{\partial^2 \tilde{\Psi}}{\partial x^2} + \!\left( V + V_{0} \right)\tilde{\Psi} 
+\]
+we have a solution with a time-dependent phase factor
+\[
+	\tilde{\Psi} = \Psi e^{-iV_{0}t / \hbar} 
+\]
+First compute
+\begin{align*}
+	\frac{\partial \tilde{\Psi}}{\partial t} & = \frac{\partial \Psi}{\partial t}e^{-iV_{0}t / \hbar} - \frac{iV_{0}}{\hbar}\Psi e^{-iV_{0}t / \hbar} \\
+	\frac{\partial^2 \tilde{\Psi}}{\partial x^2} & = \frac{\partial^2 \Psi}{\partial x^2}e^{-iV_{0}t / \hbar}
+\end{align*}
+Then substitute into Schr\"odinger's equation and cancel the \( e^{-iV_{0}t / \hbar} \) terms:
+\[
+	i \hbar \frac{\partial \Psi}{\partial t} + V_{0}\Psi = -\frac{\hbar^{2}}{2m}\frac{\partial^2 \Psi}{\partial x^2} + \!\left( V + V_{0} \right)\Psi 
+\]
+and canceling the \( V_{0}\Psi \) terms restores the original Schr\"odinger's equation, as desired. Referring to equation 1.36 for the expectation value of any dynamical quantity:
+\[
+	\braket{Q \!\left( x,p \right)} = \int \Psi^{*}Q \!\left( x,\frac{\hbar}{i}\frac{\partial }{\partial x} \right)\Psi \, dx 
+\]
+And substituting \( \tilde{\Psi} \), bearing in mind that the time-dependent phase factor is exclusively in \( t \) and thus treated as a constant in the integral over \( x \), we find
+\begin{align*}
+	\braket{Q \!\left( x,p \right)} & = \int \tilde{\Psi}^{*}Q \!\left( x,\frac{\hbar}{i}\frac{\partial }{\partial x} \right)\tilde{\Psi} \, dx \\
+					& = \int \underbrace{\Psi^{*}e^{iV_{0}t / \hbar}}Q \!\left( x,\frac{\hbar}{i}\frac{\partial }{\partial x} \right)\underbrace{\Psi e^{-iV_{0}t / \hbar}} \, dx \\
+					& = \int \Psi^{*}Q \!\left( x,\frac{\hbar}{i}\frac{\partial }{\partial x} \right)\Psi \, dx
+\end{align*}
+meaning that expectation values are \textbf{unchanged} by the presence of a constant potential energy.
+
+\newpage
+\subsection{\textsf{1.6 - The Uncertainty Principle}}
+% QUESTION 9
+\qs{1.9}{A particle of mass \( m \) is in the state
+\[
+	\Psi \!\left( x,t \right) = Ae^{-a \!\left[ \!\left( mx^{2} / \hbar \right) + it \right]} 
+\]
+where \( A \) and \( a \) are positive real constants.
+\begin{enumerate}[label=(\alph*)]
+	\item Find \( A \).
+	\item For what potential energy function \( V \!\left( x \right) \) does \( \Psi \) satisfy the Schr\"odinger equation?
+	\item Calculate the expectation values of \( x \), \( x^{2} \), \( p \), and \( p^{2} \).
+	\item Find \( \sigma_{x} \) and \( \sigma_{p} \). Is their product consistent with the uncertainty principle?
+\end{enumerate}}
+\begin{enumerate}[label=(\alph*)]
+	\item Normalize to derive
+	\begin{align*}
+		\int^{\infty}_{-\infty} \Psi^{*}\Psi \, dx & = \abs{A}^{2}\int^{\infty}_{-\infty} \!\left( e^{-a \!\left[ \!\left( mx^{2} / \hbar \right) - it \right]} \right)\!\left( e^{-a \!\left[ \!\left( mx^{2} / \hbar \right) + it \right]} \right) \, dx \\
+							   & =  \abs{A}^{2}\int^{\infty}_{-\infty} e^{-2amx^{2} / \hbar} \, dx \\
+							   & = \abs{A}^{2}\sqrt{\frac{\pi \hbar}{2am}} = 1 \\
+							\implies A & = \!\left( \frac{2am}{\pi \hbar} \right)^{1/4}
+	\end{align*}
+	\item Compute
+	\begin{align*}
+		\frac{\partial \Psi}{\partial t} & = -ai \Psi \\
+		\frac{\partial \Psi}{\partial x} & = -\frac{2am}{\hbar}x \Psi \\ 
+		\frac{\partial^2 \Psi}{\partial x^2} & = \!\left( -\frac{2am}{\hbar} + \frac{4a^{2}m^{2}}{\hbar^{2}}x^{2} \right)\Psi
+	\end{align*}
+	Substituting into Schr\"odinger's equation produces
+	\[
+		a \hbar \Psi = \!\left( a \hbar - 2a^{2}m x^{2} \right)\Psi + V \!\left( x \right) \Psi 
+	\]
+	Canceling \( \Psi \) throughout and rearranging to solve \( V \!\left( x \right) \), we have
+	\[
+		V \!\left( x \right) = 2a^{2}mx^{2} 
+	\]
+	\item Using the result of problem 1.8, we need not consider the phase factor. From equation 1.36 the expectations are
+	\begin{align*}
+		\braket{x} & = \int^{\infty}_{-\infty} \Psi^{*}x \Psi \, dx = \abs{A}^{2}\int^{\infty}_{-\infty} xe^{-\alpha x^{2}} \, dx \\
+			   & = 0 \\
+		\braket{x^{2}} & = \int^{\infty}_{-\infty} \Psi^{*}x^{2}\Psi \, dx = \abs{A}^{2}\int^{\infty}_{-\infty} x^{2}e^{-\alpha x^{2}} \, dx = 2 \abs{A}^{2}\int^{\infty}_{0} x^{2}e^{-\alpha x^{2}} \, dx \\
+			       & = \frac{\abs{A}^{2}}{2 \alpha}\sqrt{\frac{\pi}{\alpha}} \\
+		\braket{p} & = \int^{\infty}_{-\infty} \Psi^{*}\frac{\hbar}{i}\frac{\partial \Psi}{\partial x} \, dx = -\frac{2 \abs{A}^{2}am}{i}\int^{\infty}_{-\infty} xe^{-\alpha x^{2}} \, dx \\
+			   & = 0 \\
+		\braket{p^{2}} & = -\hbar^{2}\int^{\infty}_{-\infty} \Psi^{*}\frac{\partial^2 \Psi}{\partial x^2} \, dx \\
+			       & = -\abs{A}^{2}\hbar^{2}\int^{\infty}_{-\infty} \!\left( -\alpha + \alpha^{2}x^{2} \right)e^{-\alpha x^{2}} \, dx \\
+			       & = \abs{A}^{2} \!\left[ \alpha \hbar^{2}\int^{\infty}_{-\infty} e^{-\alpha x^{2}} \, dx - 2 \alpha^{2}\hbar^{2}\int^{\infty}_{0} x^{2}e^{-\alpha x^{2}} \, dx \right]  \\
+			       & = \abs{A}^{2} \!\left[ \alpha \hbar^{2}\sqrt{\frac{\pi}{\alpha}} - \frac{\alpha \hbar^{2}}{2}\sqrt{\frac{\pi}{\alpha}} \right] \\
+			       & = \frac{\abs{A}^{2}\alpha \hbar^{2}}{2}\sqrt{\frac{\pi}{\alpha}}
+	\end{align*}
+	where \( \alpha = 2am / \hbar \). Simplifying the nonzero expecations gives us 
+	\begin{align*}
+		\braket{x^{2}} & = \frac{1}{2}\!\left( \frac{2am}{\pi \hbar} \right)^{1/2}\!\left( \frac{\hbar}{2am} \right)^{3/2}\sqrt{\pi} = \frac{\hbar}{4am} \\
+		\braket{p^{2}} & = \frac{1}{2}\!\left( \frac{2am}{\pi \hbar} \right)^{1/2}\!\left( \frac{2am}{\hbar} \right)^{1/2}\hbar^{2}\sqrt{\pi} = am \hbar
+	\end{align*}
+	\item Since \( \braket{x} = \braket{p} = 0 \), 
+	\begin{align*}
+		\sigma_{x} & = \sqrt{\frac{\hbar}{4am}} \\
+		\sigma_{p} & = \sqrt{am \hbar}
+	\end{align*}
+	We can conclude
+	\[
+		\sigma_{x}\sigma_{p} = \frac{\hbar}{2}
+	\]
+	which is beautifully consistent with the uncertainty principle. This is the wave function corresponding to the quantum harmonic oscillator in its ground-state (more on this in chapter 2).
+\end{enumerate}
+
+\newpage
+\subsection{\textsf{Further Problems for Chapter 1}}
+% QUESTION 10
+\qs{1.10}{Consider the first 25 digits in the decimal expansion of \( \pi \) (3, 1, 4, 1, 5, 9, ...).
+\begin{enumerate}[label=(\alph*)]
+	\item If you selected one number at random, from this set, what are the probabilities of getting each of the 10 digits?
+	\item What is the most probable digit? What is the median digit? What is the average value?
+	\item Find the standard deviation for this distribution.
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item \begin{table}[h]
+	\centering
+	\begin{tabular}{c c}
+		\hline
+		Digit \( j \) & \( P \!\left( j \right) \) \\
+		\hline
+		0 & \( 0 \) \\
+		1 & \( 2/25 \) \\
+		2 & \( 3/25 \) \\
+		3 & \( 5/25 \) \\
+		4 & \( 3/25 \) \\
+		5 & \( 3/25 \) \\
+		6 & \( 3/25 \) \\
+		7 & \( 1/25 \) \\
+		8 & \( 2/25 \) \\
+		9 & \( 3/25 \) \\
+		\hline
+	\end{tabular}
+	\end{table}
+	\item The most probable digit is \( 3 \), with \( P \!\left( 3 \right) = 1/5 \), with median digit \( 4 \), and average value
+	\begin{align*}
+		\braket{j} & = \sum j P \!\left( j \right) \\
+			   & = \frac{1 \cdot 2 + 2 \cdot 3 + 3 \cdot 5 + 4 \cdot 3 + 5 \cdot 3 + 6 \cdot 3 + 7 \cdot 1 + 8 \cdot 2 + 9 \cdot 3}{25} \\
+			   & = \frac{118}{25} = 4.72
+	\end{align*}
+	\item Compute the mean of \( j^{2} \):
+	\begin{align*}
+		\braket{j^{2}} & = \sum j^{2}P \!\left( j \right) \\
+			   & = \frac{1^{2} \cdot 2 + 2^{2} \cdot 3 + 3^{2} \cdot 5 + 4^{2} \cdot 3 + 5^{2} \cdot 3 + 6^{2} \cdot 3 + 7^{2} \cdot 1 + 8^{2} \cdot 2 + 9^{2} \cdot 3}{25} \\
+			   & = \frac{710}{25} = 28.4
+	\end{align*}
+	Then the standard deviation is
+	\[
+		\sigma = \sqrt{\braket{j^{2}} - \braket{j}^{2}} = \sqrt{28.4 - 4.72^{2}} = \sqrt{6.1216} \approx 2.474
+	\]
+\end{enumerate}
+
+% QUESTION 11
+\qs{1.11}{The needle on a broken car speedometer is free to swing, and bounces perfectly off the pins on either end, so that if you give it a flick it is equally likely to come to rest at any angle between \( 0 \) and \( \pi \).
+\begin{enumerate}[label=(\alph*)]
+	\item What is the probability density, \( \rho \!\left( \theta \right) \)? \textit{Hint}: \( \rho \!\left( \theta \right) \, d \theta \) is the probability that the needle will come to rest between \( \theta \) and \( \!\left( \theta + d \theta \right) \). Graph \( \rho \!\left( \theta \right) \) as a function of \( \theta \), from \( -\pi / 2 \) to \( 3 \pi / 2 \). (Of course, \textit{part} of this interval is excluded, so \( \rho \) is zero there.) Make sure that the total probability is 1.
+	\item Compute \( \braket{\theta} \), \( \braket{\theta^{2}} \), and \( \sigma \), for this distribution.
+	\item Compute \( \braket{\sin\!\left(\theta\right)} \), \( \braket{\cos\!\left(\theta\right)} \), and \( \braket{\cos^{2}\!\left(\theta\right)} \).
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item The density is given by
+	\[
+		\rho \!\left( \theta \right) = \begin{cases}
+			\displaystyle{\frac{1}{\pi}}, & 0 \le \theta \le \pi \\[10pt]
+			0, & -\pi / 2 \le \theta < 0, \pi < \theta \le 3 \pi / 2
+		\end{cases}
 	\]
 	\item 
 \end{enumerate}
+
 
 \end{document}

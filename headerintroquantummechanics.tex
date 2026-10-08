@@ -147,6 +147,14 @@ showstringspaces=false
 \DeclarePairedDelimiter\absfixed{\lvert}{\rvert}%
 \RenewDocumentCommand{\abs}{s}{\IfBooleanTF{#1}{\absfixed}{\absfixed*}}%
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+% plain \bra, \ket, \braket autosize like braket's \Bra, \Ket, \Braket (including
+% the | separators); starred forms keep braket's fixed-size delimiters
+\let\brafixed\bra
+\let\ketfixed\ket
+\let\braketfixed\braket
+\RenewDocumentCommand{\bra}{s m}{\IfBooleanTF{#1}{\brafixed{#2}}{\Bra{#2}}}%
+\RenewDocumentCommand{\ket}{s m}{\IfBooleanTF{#1}{\ketfixed{#2}}{\Ket{#2}}}%
+\RenewDocumentCommand{\braket}{s m}{\IfBooleanTF{#1}{\braketfixed{#2}}{\Braket{#2}}}%
 
 %%%%%%%%%%%%%%%%%%%%
 % DOCUMENT GEOMETRY
@@ -223,6 +231,12 @@ showstringspaces=false
 
 \DeclareMathOperator{\Real}{Re}
 \DeclareMathOperator{\Imag}{Im}
+
+%%%%%%%%%%%%%%%%%%%%
+% Optimization
+%%%%%%%%%%%%%%%%%%%%
+
+\DeclareMathOperator*{\argmax}{arg\,max}
 
 %%%%%%%%%%%%%%%%%%%%
 % Probability Operators
