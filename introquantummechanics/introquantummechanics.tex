@@ -445,10 +445,341 @@ where \( A \) and \( a \) are positive real constants.
 	\[
 		\rho \!\left( \theta \right) = \begin{cases}
 			\displaystyle{\frac{1}{\pi}}, & 0 \le \theta \le \pi \\[10pt]
-			0, & -\pi / 2 \le \theta < 0, \pi < \theta \le 3 \pi / 2
+			0, & -\pi / 2 \le \theta < 0 \text{ or } \pi < \theta \le 3 \pi / 2
 		\end{cases}
 	\]
-	\item 
+	Confirm that the total probability is 1:
+	\[
+		\int^{\pi}_{0} \frac{d \theta}{\pi} = \frac{\theta}{\pi}\bigg|^{\pi}_{0} = 1  
+	\]
+	Graph the density as 
+	\begin{center}
+	\includegraphics[width=0.9\textwidth]{../chap1/chap1ex1.11a.pdf}
+	\end{center}
+	But we ought not to be satisfied by theory alone. We can empirically simulate this experiment and find the ensuing histogram conforms to our theoretical result:
+	\begin{center}
+	\includegraphics[width=0.9\textwidth]{../chap1/chap1ex1.11a_sim.pdf}
+	\end{center}
+	\item Compute
+	\begin{align*}
+		\braket{\theta} & = \int^{\pi}_{0} \frac{\theta}{\pi} \, d \theta = \frac{\theta^{2}}{2 \pi}\bigg|^{\pi}_{0} = \frac{\pi}{2} \\
+		\braket{\theta^{2}} & = \int^{\pi}_{0} \frac{\theta^{2}}{\pi} \, d \theta = \frac{\theta^{3}}{3 \pi}\bigg|^{\pi}_{0} = \frac{\pi^{2}}{3} \\ 
+		\sigma & = \sqrt{\braket{\theta^{2}} - \braket{\theta}^{2}} = \sqrt{\frac{\pi^{2}}{3} - \frac{\pi^{2}}{4}} = \frac{\pi}{2 \sqrt{3}}
+	\end{align*}
+	\item Compute
+	\begin{align*}
+		\braket{\sin\!\left(\theta\right)} & = \int^{\pi}_{0} \frac{\sin\!\left(\theta\right)}{\pi} \, d \theta = -\frac{\cos\!\left(\theta\right)}{\pi}\bigg|^{\pi}_{0} = \frac{2}{\pi} \\
+		\braket{\cos\!\left(\theta\right)} & = \int^{\pi}_{0} \frac{\cos\!\left(\theta\right)}{\pi} \, d \theta = \frac{\sin\!\left(\theta\right)}{\pi}\bigg|^{\pi}_{0} = 0 \\ 
+		\braket{\cos^{2}\!\left(\theta\right)} & = \int^{\pi}_{0} \frac{\cos^{2}\!\left(\theta\right)}{\pi} \, d \theta = \int^{\pi}_{0} \!\left( \frac{1 + \cos\!\left(2 \theta\right)}{2 \pi} \right) \, d \theta \\
+						       & = \frac{\theta}{2 \pi}\bigg|^{\pi}_{0} + \frac{\sin\!\left(2 \theta\right)}{4 \pi}\bigg|^{\pi}_{0} = \frac{1}{2}
+	\end{align*}
+\end{enumerate}
+
+\newpage
+% QUESTION 12
+\qs{1.12}{We consider the same device as the previous problem, but this time we are interested in the \( x \)-coordinate of the needle point -- that is, the ``shadow,'' or ``projection,'' of the needle on the horizontal line.
+\begin{enumerate}[label=(\alph*)]
+	\item What is the probability density \( \rho \!\left( x \right) \)? Graph \( \rho \!\left( x \right) \) as a function of \( x \), from \( -2r \) to \( +2r \), where \( r \) is the length of the needle. Make sure the total probability is 1. \textit{Hint}: \( \rho \!\left( x \right) \, dx \) is the probability that the projection lies between \( x \) and \( x + dx \). You know (from Problem 1.11) the probability that \( \theta \) is in a given range; the question is, what interval \( dx \) corresponds to the interval \( d \theta \)?
+	\item Compute \( \braket{x} \), \( \braket{x^{2}} \), and \( \sigma \), for this distribution. Explain how you could have obtained these results from part (c) of Problem 1.11.
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Begin with the polar coordinate definition \( x = r \cos\!\left(\theta\right) \). In fact, this is our projection of the needle onto the horizontal axis. Take the inverse: \( \theta = \cos^{-1}\!\left(x / r\right) \). The relation between \( dx \) and \( d \theta \) is
+	\[
+		d \theta = -\frac{1}{r}\frac{1}{\sqrt{1 - x^{2} / r^{2}}}dx = -\frac{dx}{\sqrt{r^{2} - x^{2}}}, \quad \abs{x} < r
+	\]
+	Taking the probability density of problem 1.11, we substitute our differential and bounds (\( \theta = \pi \rightarrow x = -r \) and \( \theta = 0 \rightarrow x = r \)) to derive
+	\[
+		 -\int^{-r}_{r} \frac{dx}{\pi \sqrt{r^{2} - x^{2}}} = \int^{r}_{-r} \frac{dx}{\pi \sqrt{r^{2} - x^{2}}} = 1
+	\]
+	and since we merely make a bijection \( \theta \mapsto x = r \cos\!\left(\theta\right) \) between the range \( \!\left[ 0,\pi \right] \rightarrow \!\left[ -r,r \right] \), we conclude our probability density (in Cartesian coordinates) is
+	\[
+		\rho \!\left( x \right) = \begin{cases}
+			1 / \pi \sqrt{r^{2} - x^{2}}, & -r < x < r \\
+			0, & \text{otherwise} 
+		\end{cases} 
+	\]
+	We graph the density and simulate this experiment below:
+	\begin{center}
+	\includegraphics[width=0.8\textwidth]{../chap1/chap1ex1.12.pdf}
+	\includegraphics[width=0.8\textwidth]{../chap1/chap1ex1.12_sim.pdf}
+	\end{center}
+	\item Compute
+	\begin{align*}
+		\braket{x} & = \int^{r}_{-r} \frac{x}{\pi \sqrt{r^{2} - x^{2}}} \, dx = 0 \quad (\text{by oddness of the integrand}) \\
+		\braket{x^{2}} & = \int^{r}_{-r} \frac{x^{2}}{\pi \sqrt{r^{2} - x^{2}}} \, dx = \frac{1}{\pi}\!\left[ \frac{r^{2}}{2}\arcsin\!\left( \frac{x}{r} \right) - \frac{x}{2}\sqrt{r^{2} - x^{2}} \right]\bigg|^{r}_{-r} = \frac{r^{2}}{2} \\ 
+		\sigma & = \sqrt{\braket{x^{2}} - \braket{x}^{2}} = \frac{r}{\sqrt{2}}
+	\end{align*}
+	The simpler approach is to use our relation \( \cos\!\left(\theta\right) = x/r \) and substitute into the expectations computed for \( \cos\!\left(\theta\right) \) and \( \cos^{2}\!\left(\theta\right) \) in the previous problem:
+	\begin{align*}
+		\braket{\cos\!\left(\theta\right)} & = \braket{\frac{x}{r}} = 0\\
+		\braket{\cos^{2}\!\left(\theta\right)} & = \braket{\frac{x^{2}}{r^{2}}} = \frac{1}{2}
+	\end{align*}
+	where multiplying through by \( r \) and \( r^{2} \) respectively yields the desired answers.
+\end{enumerate}
+
+% QUESTION 13
+\qs{1.13}{\textbf{Buffon's needle}. A needle of length \( l \) is dropped at random onto a sheet of paper ruled with parallel lines a distance \( l \) apart. What is the probability that the needle will cross a line? \textit{Hint}: Refer to Problem 1.12.}
+
+Some intuition to motivate us:
+\begin{itemize}[label=\(\circ\)]
+	\item Fundamentally, there are two \textbf{independent} variables: \( \theta \in \!\left[ 0,\pi \right] \), the angle of the needle relative to the lines, and \( y \), the vertical distance between the center of the needle to the nearest line. Assume both are distributed uniformly.
+	\item The likelihood that the needle will fall parallel \textbf{and} land on one of the paper's lines is negligible.
+	\item The more vertical the needle is, the higher the likelihood it will intersect with one of the lines. More precisely, \( P \!\left( \text{cross} \right) \uparrow \) when \( l \abs{\cos\!\left(\theta\right)} \downarrow \).
+\end{itemize}
+The vertical height of the needle, which is a function of \( \theta \), is \( l \sin\!\left(\theta\right) \). Then the vertical distance from the center of the needle to either of its ends is \( l \sin\!\left(\theta\right) / 2 \). \textbf{Notably, if the center of the needle falls some vertical distance \( y < l \sin\!\left(\theta\right) / 2 \)}, within the paper's lines, we have an intersection. 
+
+The density \( \rho \!\left( y \right) \) is
+\[
+	\rho \!\left( y \right) = \frac{1}{l}, \quad 0 \le y \le l
+\]
+which is easily verified as normalizing to 1. 
+Since we have independently distributed variables, the joint probability is given from integrating the product of the corresponding densities for \( \theta \) and \( y \). Given that the events that the center of the needle falls within either \( \!\left[ 0,l \sin\!\left(\theta\right) / 2 \right] \) or \( \!\left[ l - l \sin\!\left(\theta\right) / 2,l \right] \) are disjoint\footnote{With overlap only when \( \theta = \pi / 2 \), which has probability \( P \!\left( \theta = \pi / 2 \right) = 0 \).}, we can simply multiply the densities with bounds \( 0 \le \theta \le \pi \) and \( 0 \le y \le l \sin\!\left(\theta\right) / 2 \) and \( l - l \sin\!\left(\theta\right) / 2 \le y \le l \):
+\begin{align*}
+	P \!\left( \text{cross} \right) & = \iint \rho \!\left( \theta \right)\rho \!\left( y \right) \, dy \, d \theta \\
+					& = \frac{1}{\pi l}\int^{\pi}_{0} \!\left[ \int^{l \sin\!\left(\theta\right) / 2}_{0} dy + \int^{l}_{l - l \sin\!\left(\theta\right) / 2} \, dy \right] \, d \theta \\
+										    & = \frac{1}{\pi l}\int^{\pi}_{0} l \sin\!\left(\theta\right) \, d \theta \\
+										    & = \frac{2}{\pi}
+\end{align*}
+
+For fun, I ran a Monte Carlo simulation of Buffon's needle experiment, demonstrating that by the law of large numbers, as \( N \) tends towards infinity, \( P \!\left( \text{cross} \right) \) approaches \( 2 / \pi \):
+
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../chap1/chap1ex1.13_sim.pdf}
+\end{center}
+
+\newpage
+% QUESTION 14
+\qs{1.14}{Let \( P_{ab}\!\left( t \right) \) be the probability of finding a particle in the range \( \!\left( a < x < b \right) \), at time \( t \).
+\begin{enumerate}[label=(\alph*)]
+	\item Show that
+	\[
+		\frac{d P_{ab}}{d t} = J \!\left( a,t \right) - J \!\left( b,t \right) 
+	\]
+	where
+	\[
+		J \!\left( x,t \right) \equiv \frac{i \hbar}{2m}\!\left( \Psi \frac{\partial \Psi^{*}}{\partial x} - \Psi^{*}\frac{\partial \Psi}{\partial x} \right) 
+	\]
+	What are the units of \( J \!\left( x,t \right) \)? \textit{Comment}: \( J \) is called the \textbf{probability current}, because it tells you the rate at which probability is ``flowing'' past the point \( x \). If \( P_{ab}\!\left( t \right) \) is increasing, then more probability is flowing into the region at one end than flows out at the other.
+	\item Find the probability current for the wave function in Problem 1.9. (This is not a very pithy example, I'm afraid; we'll encounter more substantial ones in due course.)
+\end{enumerate}}
+\begin{enumerate}[label=(\alph*)]
+	\item The probability \( P_{ab}\!\left( t \right) \) is 
+	\[
+		P_{ab}\!\left( t \right) = \int^{b}_{a} \abs{\Psi \!\left( x,t \right)}^{2} \, dx  
+	\]
+	By the Leibniz rule,
+	\begin{align*}
+		\frac{d P_{ab}}{d t} & = \int^{b}_{a} \frac{\partial }{\partial t}\abs{\Psi \!\left( x,t \right)}^{2} \, dx = \int^{b}_{a} \frac{\partial }{\partial t}\!\left( \Psi^{*}\Psi \right) \, dx \\
+				     & = \int^{b}_{a} \!\left( \Psi \frac{\partial \Psi^{*}}{\partial t} + \Psi^{*}\frac{\partial \Psi}{\partial t} \right) \, dx \\
+				     & = \int^{b}_{a} \!\left[ \Psi \!\left( -\frac{i \hbar}{2m}\frac{\partial^2 \Psi^{*}}{\partial x^2} + \frac{iV}{\hbar}\Psi^{*} \right) + \Psi^{*}\!\left( \frac{i \hbar}{2m}\frac{\partial^2 \Psi}{\partial x^2} - \frac{iV}{\hbar}\Psi \right)  \right] \, dx \\
+				     & = \frac{i \hbar}{2m}\int^{b}_{a} \!\left( -\Psi \frac{\partial^2 \Psi^{*}}{\partial x^2} + \Psi^{*}\frac{\partial^2 \Psi}{\partial x^2} \right) \, dx \\
+				     & = \frac{i \hbar}{2m}\!\left( -\Psi \frac{\partial \Psi^{*}}{\partial x} + \Psi^{*}\frac{\partial \Psi}{\partial x} \right)\bigg|^{b}_{a} \\
+				     & = J \!\left( a,t \right) - J \!\left( b,t \right)
+	\end{align*}
+	Since \( P_{ab}\!\left( t \right) \), as with any probability, is a unitless quantity, the probability current \( J \!\left( x,t \right) \) has units \( \text{s}^{-1} \). 
+	\item From the wave function
+	\[
+		\Psi \!\left( x,t \right) = Ae^{-a \!\left[ \!\left( mx^{2} / \hbar \right) + it \right]}, \quad A = \!\left( \frac{2am}{\pi \hbar} \right)^{1/4}
+	\]
+	Compute
+	\[
+		\frac{\partial \Psi}{\partial x} = -\frac{2Aam}{\hbar}xe^{-a \!\left[ \!\left( mx^{2}/\hbar \right) + it \right]}
+	\]
+	Then
+	\[
+		J \!\left( x,t \right) = \frac{i \hbar}{2m}\!\left( -\frac{2A^{2}am}{\hbar}xe^{-2amx^{2}/\hbar} + \frac{2A^{2}am}{\hbar}xe^{-2amx^{2}/\hbar} \right) = 0
+	\]
+	which physically indicates to us that the wave function is ``stationary'' and \( \abs{\Psi \!\left( x,t \right)}^{2} \) is unchanged for any value of \( x \).
+\end{enumerate}
+
+% QUESTION 15
+\qs{1.15}{Suppose you wanted to describe an \textbf{unstable particle}, that spontaneously disintegrates with a ``lifetime'' \( \tau \). In that case the total probability of finding the particle somewhere should \textit{not} be constant, but should decrease at (say) an exponential rate:
+\[
+	P \!\left( t \right) \equiv \int^{\infty}_{-\infty} \abs{\Psi \!\left( x,t \right)}^{2} \, dx = e^{-t/\tau}  
+\]
+A crude way of achieving this result is as follows. In Equation 1.24 we tacitly assumed that \( V \) (the potential energy) is \textit{real}. That is certainly reasonable, but leads to the ``conservation of probability'' enshrined in Equation 1.27. What if we assign to \( V \) an imaginary part:
+\[
+	V = V_{0} - i \Gamma 
+\]
+where \( V_{0} \) is the true potential energy and \( \Gamma \) is a positive real constant?
+\begin{enumerate}[label=(\alph*)]
+	\item Show that (in place of Equation 1.27) we now get
+	\[
+		\frac{d P}{d t} = -\frac{2 \Gamma}{\hbar}P 
+	\]
+	\item Solve for \( P \!\left( t \right) \), and find the lifetime of the particle in terms of \( \Gamma \).
+\end{enumerate}}
+\begin{enumerate}[label=(\alph*)]
+	\item From the adjusted Schr\"odinger equation, we have
+	\[
+		\frac{\partial \Psi}{\partial t} = \frac{i \hbar}{2m}\frac{\partial^2 \Psi}{\partial x^2} - \frac{i}{\hbar}\!\left( V_{0} - i \Gamma \right)\Psi = \frac{i \hbar}{2m}\frac{\partial^2 \Psi}{\partial x^2} - \!\left( \frac{\Gamma + iV_{0}}{\hbar} \right)\Psi
+	\]
+	Then the complex conjugate is
+	\[
+		\frac{\partial \Psi^{*}}{\partial t} = -\frac{i \hbar}{2m}\frac{\partial^2 \Psi^{*}}{\partial x^2} - \!\left( \frac{\Gamma - iV_{0}}{\hbar} \right)\Psi^{*}
+	\]
+	Using these pieces, we can derive
+	\begin{align*}
+		\frac{\partial }{\partial t}\abs{\Psi}^{2} & = \Psi^{*}\frac{\partial \Psi}{\partial t} + \frac{\partial \Psi^{*}}{\partial t}\Psi \\
+		 & = \frac{i \hbar}{2m}\!\left( \Psi^{*}\frac{\partial^2 \Psi}{\partial x^2} - \frac{\partial^2 \Psi^{*}}{\partial x^2}\Psi \right) - \frac{2 \Gamma}{\hbar}\abs{\Psi}^{2} \\
+		 & = \frac{\partial }{\partial x}\!\left[ \frac{i \hbar}{2m}\!\left( \Psi^{*}\frac{\partial \Psi}{\partial x} - \frac{\partial \Psi^{*}}{\partial x}\Psi \right) \right] - \frac{2 \Gamma}{\hbar}\abs{\Psi}^{2}
+	\end{align*}
+	which leads directly to the final piece:
+	\begin{align*}
+		\frac{d P}{d t} & = \frac{d }{d t}\int^{\infty}_{-\infty} \abs{\Psi}^{2} \, dx = \int^{\infty}_{-\infty} \frac{\partial }{\partial t}\abs{\Psi}^{2} \, dx \\
+				& = \int^{\infty}_{-\infty} \!\left[ \frac{\partial }{\partial x}\!\left[ \frac{i \hbar}{2m}\!\left( \Psi^{*}\frac{\partial \Psi}{\partial x} - \frac{\partial \Psi^{*}}{\partial x}\Psi \right) \right] - \frac{2 \Gamma}{\hbar}\abs{\Psi}^{2} \right] \, dx \\
+				& = -\frac{2 \Gamma}{\hbar}\int^{\infty}_{-\infty} \abs{\Psi}^{2} \, dx \\
+				& = -\frac{2 \Gamma}{\hbar}P
+	\end{align*}
+	where in moving from lines 2 to 3 we use the fact that \( \Psi,\Psi^{*} \rightarrow 0 \) and \( \abs{\partial \Psi / \partial x}, \abs{\partial \Psi^{*} / \partial x} < M \) for some constant \( M \) as \( x \rightarrow \pm \infty \). 
+	\item By separating variables, derive
+	\begin{alignat*}{2}
+		&                    & \int \frac{dP}{P} & = -\frac{2 \Gamma}{\hbar}\int dt \\
+		& \implies \quad     & \ln\!\left(P\right) & = -\frac{2 \Gamma}{\hbar}t + C \\
+		& \implies           & P \!\left( t \right) & = P \!\left( 0 \right) e^{-2 \Gamma t / \hbar} = e^{-t / \tau}
+	\end{alignat*}
+	where we assume initial condition \( P \!\left( t = 0 \right) = 1 \) and \( \tau = \hbar / 2 \Gamma \).
+\end{enumerate}
+
+% QUESTION 16
+\qs{1.16}{Show that
+\[
+	\frac{d }{d t}\int^{\infty}_{-\infty} \Psi^{*}_{1}\Psi_{2} \, dx = 0  
+\]
+for any two (normalizable) solutions to the Schr\"odinger equation, \( \Psi_{1} \) and \( \Psi
+_{2}\).}
+
+By Leibniz's rule,
+\begin{align*}
+	\frac{d }{d t}\int^{\infty}_{-\infty} \Psi^{*}_{1}\Psi_{2} \, dx & = \int^{\infty}_{-\infty} \frac{\partial }{\partial t}\!\left( \Psi^{*}_{1}\Psi_{2} \right) \, dx \\
+									 & = \int^{\infty}_{-\infty} \!\left( \Psi^{*}_{1}\frac{\partial \Psi_{2}}{\partial t} + \frac{\partial \Psi^{*}_{1}}{\partial t}\Psi_{2} \right) \, dx \\
+									 & = \int^{\infty}_{-\infty} \!\left[ \frac{i \hbar}{2m}\!\left( \Psi^{*}_{1}\frac{\partial^2 \Psi_{2}}{\partial x^2} - \frac{\partial^2 \Psi^{*}_{1}}{\partial x^2}\Psi_{2} \right) - \frac{i}{\hbar}V \!\left( \Psi^{*}_{1}\Psi_{2} - \Psi_{2}\Psi^{*}_{1} \right) \right] \, dx \\
+									 & = \frac{i \hbar}{2m}\int^{\infty}_{-\infty} \frac{\partial }{\partial x}\!\left( \Psi^{*}_{1}\frac{\partial \Psi_{2}}{\partial x} - \frac{\partial \Psi^{*}_{1}}{\partial x}\Psi_{2} \right) \, dx \\
+									 & = \frac{i \hbar}{2m}\!\left( \Psi^{*}_{1}\frac{\partial \Psi_{2}}{\partial x} - \frac{\partial \Psi^{*}_{1}}{\partial x}\Psi_{2} \right) \bigg|^{\infty}_{-\infty}
+\end{align*}
+which vanishes because \( \Psi_{2},\Psi_{1}^{*} \rightarrow 0 \) and \( \abs{\partial \Psi_{2} / \partial x}, \abs{\partial \Psi^{*}_{1} / \partial x} < M \) for some constant \( M \) as \( x \rightarrow \pm \infty \). Note that since \( V \) is real, the potential terms cancel.
+
+\vspace{12pt}
+
+% QUESTION 17
+\qs{1.17}{A particle is represented (at time \( t = 0 \)) by the wave function
+\[
+	\Psi \!\left( x,0 \right) = \begin{cases}
+		A \!\left( a^{2} - x^{2} \right), & \text{if } -a \le x \le + a \\
+		0, & \text{otherwise} 
+	\end{cases} 
+\]
+\begin{enumerate}[label=(\alph*)]
+	\item Determine the normalization constant \( A \).
+	\item What is the expectation value of \( x \) (at time \( t = 0 \))?
+	\item What is the expectation value of \( p \) (at time \( t = 0 \))? (Note that you \textit{cannot} get it from \( p = md \braket{x} / dt \). Why not?)
+	\item Find the expectation value of \( x^{2} \).
+	\item Find the expectation value of \( p^{2} \).
+	\item Find the uncertainty in \( x \) \( \!\left( \sigma_{x} \right) \).
+	\item Find the uncertainty in \( p \) \( \!\left( \sigma_{p} \right) \).
+	\item Check that your results are consistent with the uncertainty principle.
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Compute
+	\begin{align*}
+		\int^{+a}_{-a} \abs{\Psi}^{2} \, dx & = \abs{A}^{2}\int^{+a}_{-a} \!\left( a^{2} - x^{2} \right)^{2} \, dx \\
+						    & = \abs{A}^{2}\int^{+a}_{-a} \!\left( a^{4} - 2a^{2}x^{2} + x^{4} \right) \, dx \\
+						    & = \abs{A}^{2}\!\left( a^{4}x - \frac{2a^{2}x^{3}}{3} + \frac{x^{5}}{5} \right)\bigg|^{+a}_{-a} \\
+						    & = \abs{A}^{2}\!\left( 2a^{5} - \frac{4a^{5}}{3} + \frac{2a^{5}}{5} \right) \\
+						    & = \abs{A}^{2}\frac{16a^{5}}{15} = 1
+	\end{align*}
+	Implying \( \abs{A}^{2} = 15 / 16a^{5} \) and \( A = \sqrt{15} / 4a^{5/2} \).
+	\item Compute, by observing the antisymmetry of an odd integrand:
+	\[
+		\braket{x} = \int^{+a}_{-a} \Psi^{*}\!\left( x \right)\Psi \, dx = \abs{A}^{2}\int^{+a}_{-a} x \!\left( a^{2} - x^{2} \right)^{2} \, dx = 0 
+	\]
+	\item Compute 
+	\begin{align*}
+		\braket{p} = \int^{+a}_{-a} \Psi^{*}\!\left( \frac{\hbar}{i}\frac{\partial }{\partial x} \right)\Psi \, dx & = \abs{A}^{2}\frac{\hbar}{i}\int^{+a}_{-a} \!\left( a^{2} - x^{2} \right)\frac{\partial }{\partial x}\!\left( a^{2} - x^{2} \right) \, dx \\
+		 & = -2\abs{A}^{2}\frac{\hbar}{i}\int^{+a}_{-a} x \!\left( a^{2} - x^{2} \right) \, dx \\ 
+		 & = 0
+	\end{align*}
+	where the final equality once more arises from the antisymmetry of the integrand about the origin.
+
+	The reasons for why we cannot simply compute \( \braket{p} = m d \braket{x} / dt \) are as follows: 
+	\begin{itemize}[label=\(\circ\)]
+		\item As \( \Psi \!\left( x,0 \right) \) is not a function of \( t \), but rather the snapshot of \( \Psi \!\left( x,t \right) \) at \( t = 0 \), knowing \( \braket{x} \) at \( t = 0 \) is insufficient to derive \( d \braket{x} / dt \). It would be equivalent to attempting to differentiate \( f \!\left( 0 \right) \) to derive \( f'\!\left( 0 \right) \), which we could not do. Using the Schr\"odinger equation to evolve \( \Psi \) in time would only be a circuitous way that would take us back to our starting integral. 
+	\end{itemize}
+	\item Compute
+	\begin{align*}
+		\braket{x^{2}} & = \int^{+a}_{-a} \Psi^{*}\!\left( x^{2} \right)\Psi \, dx = \abs{A}^{2}\int^{+a}_{-a} x^{2}\!\left( a^{2} - x^{2} \right)^{2} \, dx \\
+			       & = 2\abs{A}^{2}\int^{+a}_{0} \!\left( a^{4}x^{2} - 2a^{2}x^{4} + x^{6} \right) \, dx \\
+			       & = 2 \abs{A}^{2}\!\left( \frac{a^{4}x^{3}}{3} - \frac{2a^{2}x^{5}}{5} + \frac{x^{7}}{7} \right)\bigg|^{+a}_{0} \\
+			       & = \frac{16a^{7}}{105}\abs{A}^{2} = \frac{a^{2}}{7}
+	\end{align*}
+	\item \begin{align*}
+		\braket{p^{2}} & = \int^{+a}_{-a} \Psi^{*}\!\left( \frac{\hbar}{i}\frac{\partial }{\partial x} \right)^{2}\Psi \, dx = -\abs{A}^{2}\int^{+a}_{-a} \!\left( a^{2} - x^{2} \right)\!\left( \hbar^{2}\frac{\partial^{2} }{\partial x^{2}} \right)\!\left( a^{2} - x^{2} \right) \, dx \\
+			   & = 2 \hbar^{2} \abs{A}^{2}\int^{+a}_{-a} \!\left( a^{2} - x^{2} \right) \, dx = 4 \hbar^{2}\abs{A}^{2}\int^{+a}_{0} \!\left( a^{2} - x^{2} \right) \, dx \\ 
+			   & = 4 \hbar^{2}\abs{A}^{2}\!\left( a^{2}x - \frac{x^{3}}{3} \right)\bigg|^{+a}_{0} \\
+			   & = \frac{8 \hbar^{2}\abs{A}^{2}a^{3}}{3} = \frac{5 \hbar^{2}}{2a^{2}}
+	\end{align*}
+	\item \[
+		\sigma_{x} = \sqrt{\braket{x^{2}} - \braket{x}^{2}} = \frac{a}{\sqrt{7}} 
+	\]
+	\item \[
+		\sigma_{p} = \sqrt{\braket{p^{2}} - \braket{p}^{2}} = \sqrt{\frac{5}{2}}\frac{\hbar}{a} 
+	\]
+	\item \[
+		\sigma_{x}\sigma_{p} = \sqrt{\frac{5}{14}}\hbar \approx 0.6 \hbar \ge \frac{\hbar}{2}
+	\]
+	which is consistent with the uncertainty principle.
+\end{enumerate}
+
+% QUESTION 18
+\qs{1.18}{In general, quantum mechanics is relevant when the de Broglie wavelength of the particle in question \( \!\left( h / p \right) \) is greater than the characteristic size of the system \( \!\left( d \right) \). In thermal equilibrium at (Kelvin) temperature \( T \), the average kinetic energy of a particle is
+\[
+	\frac{p^{2}}{2m} = \frac{3}{2}k_{B}T 
+\]
+(where \( k_{B} \) is Boltzmann's constant), so the typical de Broglie wavelength is
+\[
+	\lambda = \frac{h}{\sqrt{3mk_{B}T}} 
+\]
+The purpose of this problem is to anticipate which systems will have to be treated quantum mechanically, and which can safely be described classically.
+\begin{enumerate}[label=(\alph*)]
+	\item \textbf{Solids}. The lattice spacing in a typical solid is around \( d = 0.3 \) nm. Find the temperature below which the free\footnote{In a solid the inner electrons are attached to a particular nucleus, and for them the relevant size would be the radius of the atom. But the outermost electrons are not attached, and for them the relevant distance is the lattice spacing. This problem pertains to the \textit{outer} electrons.} \textit{electrons} in a solid are quantum mechanical. Below what temperature are the \textit{nuclei} in a solid quantum mechanical? (Use sodium as a typical case.) \textit{Moral}: The free electrons in a solid are \textit{always} quantum mechanical; the nuclei are almost \textit{never} quantum mechanical. The same goes for liquids (for which the interatomic spacing is roughly the same), with the exception of helium below 4 K.
+	\item \textbf{Gases}. For what temperatures are the atoms in an ideal gas at pressure \( P \) quantum mechanical? \textit{Hint}: Use the ideal gas law (\( PV = Nk_{B}T \)) to deduce the interatomic spacing. \textit{Answer}: 
+		\[ 
+			T < \!\left( 1/k_{B} \right)\!\left( h^{2}/3m \right)^{3/5}P^{2/5} 
+		\] 
+		Obviously (for the gas to show quantum behavior) we want \( m \) to be as \textit{small} as possible, and \( P \) as \textit{large} as possible. Put in the numbers for helium at atmospheric pressure. Is hydrogen in outer space (where the interatomic spacing is about 1 cm and the temperature is 3 K) quantum mechanical? (Assume it's monoatomic hydrogen, not \( \text{H}_{2} \)).
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Using the de Broglie wavelength, we must identify the range of \( T \) such that \( \lambda > d = 0.3 \) nm for both an electron and Na nucleus. Algebraically rearrange to derive
+	\[
+		\frac{h}{\sqrt{3mk_{B}T}} > d \quad \implies \quad T < \frac{h^{2}}{3mk_{B}d^{2}}
+	\]
+	Substituting in values:
+	\begin{align*}
+		h & = 6.626 \cdot 10^{-34} \text{ m}^{2} \text{kg} / \text{s} \\
+		k_{B} & = 1.38 \cdot 10^{-23} \text{ m}^{2}\text{kg}\text{s}^{-2}\text{K}^{-1} \\
+		m_{e} & = 9.109 \cdot 10^{-31} \text{ kg} \\ 
+		m_{Na} & = 3.817 \cdot 10^{-26} \text{ kg}
+	\end{align*}
+	Substituting, we compute for electrons and the Na nucleus
+	\[
+		T_{e} < 1.29 \cdot 10^{5} \text{ K}, \qquad T_{Na} < 3.09 \text{ K}
+	\]
+	which confirms for us that for nearly all physical situations, electrons are quantum mechanical\footnote{For reference, at 1 atm, no known material remains solid above \( \approx 4300 \) K.}, but nuclei are not aside from extreme low temperatures.
+	\item From the ideal gas law, the volume \textbf{per particle} is given by \( V / N \) (\( V \) alone gives the volume of the entire system, which we do not want). The distance between particles is then given by the cube root of \( V / N \):
+	\[
+		\!\left( V / N \right)^{1/3} = \!\left( \frac{k_{B}T}{P} \right)^{1/3} = d
+	\]
+	With some algebraically manipulation we can derive
+	\begin{align*}
+		\frac{h}{\sqrt{3mk_{B}T}} > \!\left( \frac{k_{B}T}{P} \right)^{1/3} & \implies T^{5/6} < \frac{hP^{1/3}}{k_{B}^{5/6}\sqrt{3m}} & & \quad \text{(isolate } T ) \\
+										    & \implies T < \!\left( \frac{1}{k_{B}} \right)\!\left( \frac{h^{2}}{3m} \right)^{3/5}P^{2/5} & & \quad \text{(raise to } 6/5 \text{ power)}
+	\end{align*}
+	At standard atmospheric pressure which is \( P = 1.013 \cdot 10^{5} \) Pa, for helium (\( m_{He} = 6.645 \cdot 10^{-27} \) kg), we calculate temperature range \( T_{He} < 2.94 \) K, which is below its boiling temperature of \( \approx 4.22 \) K, guaranteeing that gaseous helium is never quantum mechanical at 1 atm. 
+
+	For monatomic hydrogen in outer space, which has \( m_{H} = 1.673 \cdot 10^{-27} \) kg, we resort to our temperature bound formula derived in part (a), as \( d \) is directly given as \( d = 10^{-2} \) m. The quantum mechanical temperature range is \( T_{H} < 6.3 \cdot 10^{-14} \) K; with outer space temperatures averaging 3 K, we are guaranteed that interstellar hydrogen virtually never behaves quantum mechanically.
 \end{enumerate}
 
 
