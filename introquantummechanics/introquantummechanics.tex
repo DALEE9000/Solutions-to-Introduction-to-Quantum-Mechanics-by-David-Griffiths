@@ -783,4 +783,213 @@ The purpose of this problem is to anticipate which systems will have to be treat
 \end{enumerate}
 
 
+\newpage
+\section{\textsf{2 - Time-Independent Schr\"{o}dinger Equation}}
+\subsection{\textsf{2.1 - Stationary States}}
+% QUESTION 1
+\qs{2.1}{Prove the following three theorems:
+\begin{enumerate}[label=(\alph*)]
+	\item For normalizable solutions, the separation constant \( E \) must be \textit{real}. \textit{Hint}: Write \( E \) (in Equation 2.7) as \( E_{0} + i \Gamma \) (with \( E_{0} \) and \( \Gamma \) real), and show that if Equation 1.20 is to hold for all \( t \), \( \Gamma \) must be zero.
+	\item The time-independent wave function \( \psi \!\left( x \right) \) can always be taken to be \textit{real} (unlike \( \Psi \!\left( x,t \right) \), which is necessarily complex). This doesn't mean that every solution to the time-independent Schr\"odinger equation \textit{is} real; what it says is that if you've got one that is \textit{not}, it can always be expressed as a linear combination of solutions (with the same energy) that \textit{are}. So you \textit{might as well} stick to \( \psi \)'s that are real. \textit{Hint}: If \( \psi \!\left( x \right) \) satisfies Equation 2.5, for a given \( E \), so too does its complex conjugate, and hence also the real linear combinations \( \!\left( \psi + \psi^{*} \right) \) and \( i \!\left( \psi - \psi^{*} \right) \).
+	\item If \( V \!\left( x \right) \) is an \textbf{even function} (that is, \( V \!\left( -x \right) = V \!\left( x \right) \)) then \( \psi \!\left( x \right) \) can always be taken to be either even or odd. \textit{Hint}: If \( \psi \!\left( x \right) \) satisfies Equation 2.5, for a given \( E \), so too does \( \psi \!\left( -x \right) \), and hence also the even and odd linear combinations \( \psi \!\left( x \right) \pm \psi \!\left( -x \right) \).
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item \begin{proof}[Proof]
+	Let \( E = E_{0} + i \Gamma \), where \( E_{0}, \Gamma \in \mathbb{R} \). Then the wave function and its conjugate is
+	\begin{align*}
+		\Psi & = \psi \!\left( x \right)e^{-i \!\left( E_{0} + i \Gamma \right)t / \hbar} = \psi \!\left( x \right)e^{\!\left( \Gamma - iE_{0} \right)t / \hbar} \\
+		\Psi^{*} & = \psi^{*} \!\left( x \right)e^{-i \!\left( -E_{0} + i \Gamma \right)t / \hbar} = \psi^{*} \!\left( x \right)e^{\!\left( \Gamma + iE_{0} \right)t / \hbar}
+	\end{align*}
+	Compute
+	\begin{align*}
+		\abs{\Psi \!\left( x,t \right)}^{2} & = \Psi^{*}\Psi = \psi^{*} \!\left( x \right)e^{\!\left( \Gamma + iE_{0} \right)t / \hbar} \cdot \psi \!\left( x \right)e^{\!\left( \Gamma - iE_{0} \right)t / \hbar} \\
+						    & = \abs{\psi \!\left( x \right)}^{2}e^{2 \Gamma t / \hbar}
+	\end{align*}
+	By premise, \( \Psi \) is normalized. Then we must have
+	\[
+		\int^{\infty}_{-\infty} \abs{\Psi \!\left( x,t \right)}^{2} \, dx = \int^{\infty}_{-\infty} \abs{\psi \!\left( x \right)}^{2}e^{2 \Gamma t / \hbar} \, dx = e^{2 \Gamma t / \hbar}\int^{\infty}_{-\infty} \abs{\psi \!\left( x \right)}^{2} \, dx = 1
+	\]
+	Note that normalization (Equation 1.20) must hold for all \( t \). However, given that the exponential changes with \( t \) for non-zero \( \Gamma \), and the definite integral is a fixed non-zero value, we can conclude that we only have normalization when \( \Gamma = 0 \).
+	\end{proof}
+	\item \begin{proof}[Proof]
+			Suppose that \( \psi \!\left( x \right) = a \!\left( x \right) + ib \!\left( x \right) \), where \( a \!\left( x \right), b \!\left( x \right) \in \mathbb{R} \), and that \( \psi \!\left( x \right) \) satisfies Equation 2.5:
+	\begin{align*}
+		-\frac{\hbar^{2}}{2m}\frac{d^2 \psi}{d x^2} + V \psi & = -\frac{\hbar^{2}}{2m}\frac{d^2 }{d x^2}\!\left[ a \!\left( x \right) + ib \!\left( x \right) \right] + V \!\left[ a \!\left( x \right) + ib \!\left( x \right) \right] \\
+								     & = \!\left( -\frac{\hbar^{2}}{2m}\frac{d^2 a}{d x^2} + Va \right) + i\!\left( -\frac{\hbar^{2}}{2m}\frac{d^2 b}{d x^2} + Vb \right) \\
+								     & = E \!\left[ a \!\left( x \right) + ib \!\left( x \right) \right] \\
+								     & = E \psi
+	\end{align*}
+	Now, for the \textbf{same} \( E \) and \( V \) (which in the former case is real by part (a), and in the latter, assumed real throughout the text), \( a \!\left( x \right) \) and \( b \!\left( x \right) \) are both real solutions: \( V \) real guarantees the terms in the parentheses are real, and \( E \) real guarantees \( Ea \) and \( Eb \) are real. Then 
+	\[
+		-\frac{\hbar^{2}}{2m}\frac{d^2 a}{d x^2} + Va = Ea 
+	\]
+	and similarly for \( b \!\left( x \right) \). Thus \( \psi \) is itself a linear combination of two real solutions with the same energy \( E \).
+	\end{proof}
+	\item \begin{proof}[Proof]
+	By premise, \( V \!\left( x \right) \) is even. Suppose \( \psi \) satisfies Equation 2.5 for a given \( E \). Then we can demonstrate that \( \psi \!\left( -x \right) \) also satisfies that equation. Define \( \phi \!\left( x \right) \equiv \psi \!\left( -x \right) \), noting that \( \phi''\!\left( x \right) = \psi''\!\left( -x \right)\!\left( -1 \right)^{2} = \psi''\!\left( -x \right) \) by the chain rule. Derive
+	\begin{align*}
+		-\frac{\hbar^{2}}{2m}\frac{d^2 \phi \!\left( x \right)}{d x^2} + V \!\left( x \right) \phi \!\left( x \right) & = -\frac{\hbar^{2}}{2m}\frac{d^2 \psi \!\left( -x \right)}{d x^2} + V \!\left( -x \right)\psi \!\left( -x \right) \\
+															      & = E \psi \!\left( -x \right) = E \phi \!\left( x \right)
+	\end{align*}
+	where we invoke the premise that \( V \!\left( x \right) \) is even in the first equality. We now have Equation 2.5 at the point \( -x \). 
+
+        Define \( \psi_{+}\!\left( x \right) = \psi \!\left( x \right) + \psi \!\left( -x \right) \) and \( \psi_{-}\!\left( x \right) = \psi \!\left( x \right) - \psi \!\left( -x \right) \). We can see that \( \psi_{+}\!\left( -x \right) = \psi \!\left( -x \right) + \psi \!\left( x \right) = \psi \!\left( x \right) + \psi \!\left( -x \right) = \psi_{+} \!\left( x \right) \), demonstrating that \( \psi_{+} \) is even. Analogously, \( -\psi_{-}\!\left( -x \right) = -\psi \!\left( -x \right) + \psi \!\left( x \right) = \psi_{-}\!\left( x \right) \), proving that \( \psi_{-}\!\left( x \right) \) is odd. 
+
+	By linearity, we can take the linear combinations \( \psi \!\left( x \right) \pm \psi \!\left( -x \right) \), which themselves are solutions. Reconstructing \( \psi = \!\left( \psi_{+} + \psi_{-} \right) / 2 \), we establish that the even and odd components of every solution \( \psi \) of Equation 2.5, given that \( V \!\left( x \right) \) is even, are themselves solutions with the same energy \( E \).
+	\end{proof}
+\end{enumerate}
+
+\newpage
+% QUESTION 2
+\qs{2.2}{Show that \( E \) must exceed the minimum value of \( V \!\left( x \right) \), for every normalizable solution to the time-independent Schr\"odinger equation. What is the classical analog to this statement? \textit{Hint}: Rewrite Equation 2.5 in the form
+\[
+	\frac{d^2 \psi}{d x^2} = \frac{2m}{\hbar^{2}}\!\left[ V \!\left( x \right) - E \right]\psi 
+\]
+if \( E < V_{\text{min}} \), then \( \psi \) and its second derivative always have the \textit{same sign} -- argue that such a function cannot be normalized.}
+\begin{proof}[Proof]
+	The geometric intuition is that when \( \psi \) and \( \psi'' \) share the same sign, the sign of \( \psi \) determines its curvature. In particular, when \( \psi > 0 \), it curves upwards in its neighborhood. The goal will be to prove that \( \psi \) is monotonic in two cases moving left- or rightwards, establishing divergence of \( \int \abs{\psi}^{2} \, dx \).
+
+Suppose to the contrary that \( E \le V_{\text{min}} \). Then \( 2m \!\left[ V \!\left( x \right) - E \right] / \hbar^{2} \ge 0 \), and \( \psi''\psi \ge 0 \). We must now deduce the behavior of \( \psi \) from this fact. By problem 2.1, we may take \( \psi \) to be real. Fix a point \( x_{0} \), assume without loss of generality \( \psi \!\left( x_{0} \right) > 0 \) (from which it immediately follows \( \psi''\!\left( x_{0} \right) \ge 0 \)), and consider two cases where \( \psi'\!\left( x_{0} \right) \le 0 \) and \( \psi'\!\left( x_{0} \right) > 0 \).
+
+\textbf{Case 1:} \( \psi'\!\left( x_{0} \right) \le 0 \). With \( x_{0} \ge x \rightarrow -\infty \), since we must have \( \psi''\!\left( x \right) \ge 0 \) (to the left of \( x_{0} \)), we first determine the behavior  of \( \psi \!\left( x \right) \). Consider the nearest point \( x_{1} < x_{0} \) such that \( \psi \!\left( x_{1} \right) \le 0 < \psi \!\left( x_{0} \right) \). By the Mean Value Theorem, we must have \( \psi' > 0 \) at some point \( c \in (x_{1},x_{0}] \). But since we selected \( x_{1} \) such that it is the \textit{first} point to the left of \( x_{0} \) such that \( \psi \!\left( x_{1} \right) \le 0 \), we can now claim \( \psi > 0 \), and thus \( \psi'' \ge 0 \), on \( (x_{1},x_{0}] \). However, because \( \psi'\!\left( c \right) > 0 \) and \( \psi'\!\left( x_{0} \right) \le 0 \), a second application of the Mean Value Theorem reveals that \( \psi'' < 0 \) \textit{somewhere} on \( (x_{1},x_{0}] \), a contradiction. Then it must be that \( \psi > 0 \) and \( \psi'' \ge 0 \) for \textit{all} points \( \!\left( -\infty,x_{0} \right) \), with \( \psi' \le \psi'\!\left( x_{0} \right) \le 0 \) -- monotonicity. Simply: \( \psi \) is always curving away from the horizontal axis on that interval, and with monotonicity, it follows that 
+\[ 
+	\int^{x_{0}}_{-\infty} \abs{\psi \!\left( x \right)}^{2} \, dx \ge \abs{\psi \!\left( x_{0} \right)}^{2}\int^{x_{0}}_{-\infty} \, dx  = \infty 
+\]
+
+\textbf{Case 2:} \( \psi'\!\left( x_{0} \right) > 0 \). Reverse the argument in case 1 going rightward to conclude \( \psi > 0 \), \( \psi'' \ge 0 \), and \( \psi' \ge \psi'\!\left( x_{0} \right) > 0 \). Similarly, with monotonicity:
+\[
+	\int^{\infty}_{x_{0}} \abs{\psi \!\left( x \right)}^{2} \, dx \ge \abs{\psi \!\left( x_{0} \right)}^{2}\int^{\infty}_{x_{0}}  \, dx = \infty  
+\]
+
+In either case, \( \psi \) cannot be normalized, a contradiction.
+
+\begin{center}
+\begin{tikzpicture}[
+	>=Stealth,
+	axis/.style={->, thick},
+	curve/.style={deepblue, very thick},
+	tangent/.style={deepred, thick},
+	marker/.style={dashed, gray},
+	region/.style={fill=deepblue!10},
+	every node/.style={font=\small}
+]
+	% Case 1: psi(x0) > 0, psi'(x0) <= 0, convex everywhere, so psi blows up as x -> -infinity
+	\begin{scope}[scale=0.8]
+		\coordinate (X0) at (1,0);
+		\coordinate (P0) at (1,0.5744);
+		% divergent area under |psi|^2 on (-infty, x0]
+		\fill[region] plot[domain=-2.7:1, samples=60] (\x,{0.5*exp(-0.6*\x)+0.3}) -- (X0) -- (-2.7,0) -- cycle;
+		% axes
+		\draw[axis] (-3.2,0) -- (3.2,0) node[below] {$x$};
+		\draw[axis] (0,-0.3) -- (0,3.3) node[left] {$\psi$};
+		% the solution
+		\draw[curve, domain=-2.7:3, samples=80] plot (\x,{0.5*exp(-0.6*\x)+0.3});
+		\node[right] at (-1.9,2.1) {$\psi\!\left( x \right)$};
+		\node[right] at (-2.5,3.0) {$\psi \rightarrow \infty$};
+		\node at (1.8,1.4) {$\psi'' > 0$};
+		% the point x0 and the tangent there
+		\draw[marker] (X0) -- (P0);
+		\draw[tangent, domain=0:2.2] plot (\x,{0.5744-0.1646*(\x-1)});
+		\node[tangent] at (2.3,0.8) {$\psi'\!\left( x_{0} \right) \le 0$};
+		\fill (P0) circle (1.6pt);
+		\node[below] at (X0) {$x_{0}$};
+		\node[below] at (-1.4,-0.3) {$\int_{-\infty}^{x_{0}} \abs{\psi}^{2} \, dx = \infty$};
+		\node[above] at (0,3.5) {\textbf{Case 1:} $\psi'\!\left( x_{0} \right) \le 0$};
+	\end{scope}
+
+	% Case 2: psi'(x0) > 0, so psi blows up as x -> +infinity
+	\begin{scope}[xshift=7cm, scale=0.8]
+		\coordinate (X0) at (-1,0);
+		\coordinate (P0) at (-1,0.5744);
+		% divergent area under |psi|^2 on [x0, infty)
+		\fill[region] (X0) -- plot[domain=-1:2.7, samples=60] (\x,{0.5*exp(0.6*\x)+0.3}) -- (2.7,0) -- cycle;
+		% axes
+		\draw[axis] (-3.2,0) -- (3.2,0) node[below] {$x$};
+		\draw[axis] (0,-0.3) -- (0,3.3) node[left] {$\psi$};
+		% the solution
+		\draw[curve, domain=-3:2.7, samples=80] plot (\x,{0.5*exp(0.6*\x)+0.3});
+		\node[left] at (1.9,2.1) {$\psi\!\left( x \right)$};
+		\node[left] at (2.5,3.0) {$\psi \rightarrow \infty$};
+		\node at (-1.8,1.4) {$\psi'' > 0$};
+		% the point x0 and the tangent there
+		\draw[marker] (X0) -- (P0);
+		\draw[tangent, domain=-2.2:0] plot (\x,{0.5744+0.1646*(\x+1)});
+		\node[tangent] at (-2.3,0.8) {$\psi'\!\left( x_{0} \right) > 0$};
+		\fill (P0) circle (1.6pt);
+		\node[below] at (X0) {$x_{0}$};
+		\node[below] at (1.4,-0.3) {$\int_{x_{0}}^{\infty} \abs{\psi}^{2} \, dx = \infty$};
+		\node[above] at (0,3.5) {\textbf{Case 2:} $\psi'\!\left( x_{0} \right) > 0$};
+	\end{scope}
+\end{tikzpicture}
+\end{center}
+\end{proof}
+
+In classical mechanics, the total energy of a particle \textbf{cannot} be less than the potential energy, but it may be equal in the case where the particle is at rest. The Hamiltonian is
+\[
+	H \!\left( x,p \right) = \underbrace{\frac{p^{2}}{2m}}_{\text{kinetic}} + \underbrace{V \!\left( x \right)}_{\text{potential}}
+\]
+in which the kinetic energy is either positive or zero. Thus in the classical case, \( E \ge V_{\text{min}} \), but in the quantum mechanical instance, \( E > V_{\text{min}} \). We call this \textbf{zero-point energy}.
+
+\subsection{\textsf{2.2 - The Infinite Square Well}}
+% QUESTION 3
+\qs{2.3}{Show that there is no acceptable solution to the (time-independent) Schr\"odinger equation for the infinite square well with \( E = 0 \) or \( E < 0 \). (This is a special case of the general theorem in Problem 2.2, but this time do it by explicitly solving the Schr\"odinger equation, and showing that you cannot meet the boundary conditions.)}
+
+\begin{proof}[Proof]
+Consider the time-independent Schr\"odinger equation
+\[
+	-\frac{\hbar^{2}}{2m}\frac{d^2 \psi}{d x^2} = E \psi 
+\]
+Consider two cases subject to the boundary conditions \( \psi \!\left( 0 \right) = \psi \!\left( a \right) = 0 \).
+
+\underline{\( E = 0 \)}: The ODE simplifies to
+\[
+	\frac{d^2 \psi}{d x^2} = 0 
+\]
+where integrating twice produces solution
+\[
+	\psi \!\left( x \right) = c_{1}x + c_{2} 
+\]
+Imposing the boundary conditions forces \( \psi \!\left( x \right) = 0 \), which is ineligible for non-normalizability:
+\begin{align*}
+	\psi \!\left( 0 \right) & = c_{2} = 0 \\
+	\psi \!\left( a \right) & = c_{1}a = 0 \quad \implies \quad c_{1} = 0
+\end{align*}
+
+\underline{\( E < 0 \)}: Rewrite the ODE as 
+\[
+	\frac{d^2 \psi}{d x^2} = \lambda \psi, \quad \lambda = -\frac{2mE}{\hbar^{2}} 
+\]
+where it is apparent that \( \lambda > 0 \), giving solution
+\[
+	\psi \!\left( x \right) = c_{1}\cosh\!\left(\sqrt{\lambda}x\right) + c_{2}\sinh\!\left(\sqrt{\lambda}x\right) 
+\]
+The boundary conditions require
+\begin{align*}
+	\psi \!\left( 0 \right) & = c_{1} = 0 \\
+	\psi \!\left( a \right) & = c_{2}\sinh\!\left(\sqrt{\lambda}a\right) = 0 \quad \implies \quad c_{2} = 0
+\end{align*}
+where the implication in the second condition arises from the fact that \( \sqrt{\lambda}a \neq 0 \), and \( \sinh\!\left(x\right) = 0 \) only when \( x = 0 \), thus our only option is to have \( c_{2} = 0 \). Once more, the trivial -- and non-normalizable -- solution \( \psi \!\left( x \right) = 0 \) remains.
+
+Ergo, it is impossible to have \( E = 0 \) or \( E < 0 \).
+\end{proof}
+
+% QUESTION 4
+\qs{2.4}{Calculate \( \braket{x} \), \( \braket{x^{2}} \), \( \braket{p} \), \( \braket{p^{2}} \), \( \sigma_{x} \), and \( \sigma_{p} \), for the \( n \)th stationary state of the infinite square well. Check that the uncertainty principle is satisfied. Which state comes closest to the uncertainty limit?}
+
+The \( n \)th stationary state (and its conjugate) of the infinite square well is
+\[
+	\psi_{n}\!\left( x \right) = \psi_{n}\!\left( x \right)^{*} = \sqrt{\frac{2}{a}}\sin\!\left(\frac{n \pi}{a}x\right) 
+\]
+Compute 
+\begin{align*}
+\braket{x} & = \frac{2}{a}\int^{a}_{0} x \sin^{2}\!\left(\frac{n \pi}{a}x\right) \, dx  = \frac{a}{2} \quad (\text{by symmetry of } \abs{\psi_{n}}^{2} \text{ about } a/2) \\
+	\braket{x^{2}} & = \frac{2}{a}\int^{a}_{0} x^{2}\sin^{2}\!\left(\frac{n \pi}{a}x\right) \, dx \quad (\text{substitute } x = u - a)\\ 
+		       & = \frac{2}{a}\int^{2a}_{a} \!\left( u - a \right)^{2}\sin^{2}\!\left(\frac{n \pi}{a}\!\left( u - a \right)\right) \, du \\
+		       & = \frac{2}{a}\bigg[ \int^{2a}_{a} u^{2}\sin^{2}\!\left(\frac{n \pi}{a}\!\left( u - a \right)\right) \, du - 2a \int^{2a}_{a} u \sin^{2}\!\left(\frac{n \pi}{a}\!\left( u - a \right)\right) \, du \\ 
+		       & \qquad + a^{2}\int^{2a}_{a} \sin^{2}\!\left(\frac{n \pi}{a}\!\left( u - a \right) \right) \, du \bigg] \\
+\end{align*}
+
+
+
 \end{document}
