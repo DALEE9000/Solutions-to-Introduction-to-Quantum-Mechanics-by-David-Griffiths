@@ -211,14 +211,35 @@ The \( n \)th stationary state (and its conjugate) of the infinite square well i
 \[
 	\psi_{n}\!\left( x \right) = \psi_{n}\!\left( x \right)^{*} = \sqrt{\frac{2}{a}}\sin\!\left(\frac{n \pi}{a}x\right) 
 \]
-Compute 
+To make our lives easier when computing integrals with integrands \( x^{2}\sin\!\left(kx\right) \) or \( x^{2}\cos\!\left(kx\right) \), use the tricks
+\begin{align*}
+	\int^{a}_{0} x^{2}\sin\!\left(kx\right) \, dx & = -\frac{d^2 }{d k^2}\int^{a}_{0} \sin\!\left(kx\right) \, dx = \frac{d^2 }{d k^2}\!\left[ \frac{\cos\!\left(ka\right) - 1}{k} \right] \\
+	\int^{a}_{0} x^{2}\cos\!\left(kx\right) \, dx & = -\frac{d^2 }{d k^2}\int^{a}_{0} \cos\!\left(kx\right) \, dx = -\frac{d^2 }{d k^2}\!\left[ \frac{\sin\!\left(ka\right)}{k} \right]  
+\end{align*}
+which conveniently eliminates the need for integration by parts! Now compute 
 \begin{align*}
 \braket{x} & = \frac{2}{a}\int^{a}_{0} x \sin^{2}\!\left(\frac{n \pi}{a}x\right) \, dx  = \frac{a}{2} \quad (\text{by symmetry of } \abs{\psi_{n}}^{2} \text{ about } a/2) \\
-	\braket{x^{2}} & = \frac{2}{a}\int^{a}_{0} x^{2}\sin^{2}\!\left(\frac{n \pi}{a}x\right) \, dx \quad (\text{substitute } x = u - a)\\ 
-		       & = \frac{2}{a}\int^{2a}_{a} \!\left( u - a \right)^{2}\sin^{2}\!\left(\frac{n \pi}{a}\!\left( u - a \right)\right) \, du \\
-		       & = \frac{2}{a}\bigg[ \int^{2a}_{a} u^{2}\sin^{2}\!\left(\frac{n \pi}{a}\!\left( u - a \right)\right) \, du - 2a \int^{2a}_{a} u \sin^{2}\!\left(\frac{n \pi}{a}\!\left( u - a \right)\right) \, du \\ 
-		       & \qquad + a^{2}\int^{2a}_{a} \sin^{2}\!\left(\frac{n \pi}{a}\!\left( u - a \right) \right) \, du \bigg] \\
+	\braket{x^{2}} & = \frac{2}{a}\int^{a}_{0} x^{2}\sin^{2}\!\left(\frac{n \pi}{a}x\right) \, dx \\
+		       & = \frac{1}{a}\!\left[ \int^{a}_{0} x^{2} \, dx - \int^{a}_{0} x^{2}\cos\!\left(\frac{2n \pi}{a}x\right) \, dx \right] \\
+		       & = \frac{a^{2}}{3} + \frac{1}{a}\frac{d^2 }{d k^2}\!\left[ \frac{\sin\!\left(ka\right)}{k} \right] \quad (k = 2n \pi / a) \\
+		       & = \frac{a^{2}}{3} - \frac{a\sin\!\left(ka\right)}{k} - \frac{2 \cos\!\left(ka\right)}{k^{2}} + \frac{2 \sin\!\left(ka\right)}{ak^{3}} \\
+		       & = \frac{a^{2}}{3} - \frac{a^{2}\sin\!\left(2n \pi\right)}{2n \pi} - \frac{a^{2} \cos\!\left(2n \pi\right)}{2n^{2}\pi^{2}} + \frac{2a^{2} \sin\!\left(2n \pi\right)}{8n^{3}\pi^{3}} \\
+		       & = a^{2}\!\left( \frac{1}{3} - \frac{1}{2n^{2}\pi^{2}} \right) \\
+	    \braket{p} & = \frac{2}{a}\int^{a}_{0} \sin\!\left(\frac{n \pi}{a}x\right)\frac{\hbar}{i}\frac{d }{d x}\sin\!\left(\frac{n \pi}{a}x\right) \, dx \quad (\text{"cancel" the } dx \text{'s and treat } d \sin\!\left(n \pi x / a\right) \text{ as a differential}) \\
+		       & = \frac{\hbar}{ai}\sin^{2}\!\left(\frac{n \pi}{a}x\right)\bigg|^{a}_{0} = 0 \\
+	\braket{p^{2}} & = \frac{2}{a}\int^{a}_{0} \sin\!\left(\frac{n \pi}{a}x\right)\!\left( \frac{\hbar}{i} \right)^{2}\frac{d^2 }{d x^2}\sin\!\left(\frac{n \pi}{a}x\right) \, dx \\
+		       & = \frac{2n^{2}\pi^{2} \hbar^{2}}{a^{3}}\int^{a}_{0} \sin^{2}\!\left(\frac{n \pi}{a}x\right) \, dx = \!\left( \frac{n \pi \hbar}{a} \right)^{2} \\
+	\sigma_{x} & = \sqrt{\braket{x^{2}} - \braket{x}^{2}} = a \sqrt{\frac{1}{12} - \frac{1}{2n^{2}\pi^{2}}} = \frac{a}{2n \pi}\sqrt{\frac{n^{2}\pi^{2} - 6}{3}} \\
+	    \sigma_{p} & = \sqrt{\braket{p^{2}} - \braket{p}^{2}} = \frac{n \pi \hbar}{a}
 \end{align*}
 
+Multiply the standard deviations to check
+\[
+	\sigma_{x}\sigma_{p} = \frac{\hbar}{2}\sqrt{\frac{n^{2}\pi^{2} - 6}{3}} > \frac{\hbar}{2}
+\]
+where the state \( n = 1 \) comes closest to the uncertainty limit, namely 
+\[
+	\frac{\hbar}{2}\sqrt{\frac{\pi^{2} - 6}{3}} \approx 1.14 \cdot \frac{\hbar}{2} 
+\]
 
 \end{document}
