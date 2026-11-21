@@ -242,4 +242,43 @@ where the state \( n = 1 \) comes closest to the uncertainty limit, namely
 	\frac{\hbar}{2}\sqrt{\frac{\pi^{2} - 6}{3}} \approx 1.14 \cdot \frac{\hbar}{2} 
 \]
 
+% QUESTION 2.5
+\qs{2.5}{A particle in the infinite square well has as its initial wave function an even mixture of the first two stationary states:
+\[
+	\Psi \!\left( x,0 \right) = A \!\left[ \psi_{1}\!\left( x \right) + \psi_{2}\!\left( x \right) \right]
+\]
+\begin{enumerate}[label=(\alph*)]
+	\item Normalize \( \Psi \!\left( x,0 \right) \). (That is, find \( A \). This is very easy, if you exploit the orthonormality of \( \psi_{1} \) and \( \psi_{2} \). Recall that, having normalized \( \Psi \) at \( t = 0 \), you can rest assured that it \textit{stays} normalized--if you doubt this, check it explicitly after doing part (b).)
+	\item Find \( \Psi \!\left( x,t \right) \) and \( \abs{\Psi \!\left( x,t \right)}^{2} \). Express the latter as a sinusoidal function of time, as in Example 2.1. To simplify the result, let \( \omega \equiv \pi^{2}\hbar / 2ma^{2} \).
+	\item Compute \( \braket{x} \). Notice that it oscillates in time. What is the angular frequency of the oscillation? What is the amplitude of the oscillation? (If your amplitude is greater than \( a / 2 \), go directly to jail.)
+	\item Compute \( \braket{p} \). (As Peter Lorre would say, ``Do it ze \textit{kveek} vay, Johnny!'')
+	\item If you measured the energy of this particle, what values might you get, and what is the probability of getting each of them? Find the expectation value of \( H \). How does it compare with \( E_{1} \) and \( E_{2} \)?
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Compute
+	\[
+		\abs{\Psi \!\left( x,0 \right)}^{2} = \abs{A}^{2}\!\left[ \psi^{2}_{1} + 2 \psi_{1}\psi_{2} + \psi^{2}_{2} \right]
+	\]
+	where \( \psi_{1} \) and \( \psi_{2} \) are real, allowing us to drop the conjugates as \( \psi^{*} = \psi \). Then we may derive (using orthonormality)
+	\begin{align*}
+		\int^{\infty}_{-\infty} \abs{\Psi \!\left( x,0 \right)}^{2} \, dx & = \abs{A}^{2}\!\left[ \underbrace{\int^{\infty}_{-\infty} \psi^{2}_{1} \, dx}_{= 1} + 2 \underbrace{\int^{\infty}_{-\infty} \psi_{1}\psi_{2} \, dx}_{= 0} + \underbrace{\int^{\infty}_{-\infty} \psi^{2}_{2} \, dx}_{= 1} \right] \\
+		 & = 2\abs{A}^{2} = 1
+	\end{align*}
+	Implying \( \abs{A} = 1 / \sqrt{2} \); choose the positive branch to conclude \( A = 1 / \sqrt{2} \).
+	\item Adding in the time dependence, we have
+	\[
+		\Psi \!\left( x,t \right) = \frac{1}{\sqrt{2}}\!\left[ \psi_{1}e^{-iE_{1}t / \hbar} + \psi_{2}e^{-iE_{2}t / \hbar} \right] 
+	\]
+	where \( E_{n} = n^{2}\pi^{2}\hbar^{2} / 2ma^{2} \). Then
+	\[
+		\Psi^{*}\!\left( x,t \right) = \frac{1}{\sqrt{2}}\!\left[ \psi_{1}e^{iE_{1}t / \hbar} + \psi_{2}e^{iE_{2}t / \hbar} \right]
+	\]
+	enabling us to compute
+	\begin{align*}
+		\abs{\Psi \!\left( x,t \right)}^{2} & = \Psi^{*}\Psi \\
+						    & = \frac{1}{2}\!\left[ \psi_{1}e^{iE_{1}t / \hbar} + \psi_{2}e^{iE_{2}t / \hbar} \right]\!\left[ e^{-iE_{1}t / \hbar} + \psi_{2}e^{-iE_{2}t / \hbar} \right] \\ 
+	\end{align*}
+\end{enumerate}
+
 \end{document}
