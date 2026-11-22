@@ -1048,10 +1048,76 @@ where the state \( n = 1 \) comes closest to the uncertainty limit, namely
 	\begin{align*}
 		\abs{\Psi \!\left( x,t \right)}^{2} & = \Psi^{*}\Psi \\
 						    & = \frac{1}{2}\!\left[ \psi_{1}e^{iE_{1}t / \hbar} + \psi_{2}e^{iE_{2}t / \hbar} \right]\!\left[ \psi_{1}e^{-iE_{1}t / \hbar} + \psi_{2}e^{-iE_{2}t / \hbar} \right] \\ 
-						    & = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + \psi_{1}\psi_{2}\!\left( e^{i \!\left( E_{1} - E_{2} \right)t / \hbar} + e^{-i \!\left( E_{1} - E_{2} \right)t / \hbar} \right) \right] \\
-						    & = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + 2\psi_{1}\psi_{2}\cos\!\left(\frac{\!\left( E_{1} - E_{2} \right)t}{\hbar}\right) \right]
+						    & = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + \psi_{1}\psi_{2}\!\left( e^{i \!\left( E_{2} - E_{1} \right)t / \hbar} + e^{-i \!\left( E_{2} - E_{1} \right)t / \hbar} \right) \right] \\
+						    & = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + 2\psi_{1}\psi_{2}\cos\!\left(\frac{\!\left( E_{2} - E_{1} \right)t}{\hbar}\right) \right] \\
+						    & = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + 2 \psi_{1}\psi_{2}\cos\!\left(\frac{3 \pi^{2}\hbar}{2ma^{2}}t\right) \right] \\
+						    & = \frac{1}{2}\!\left( \psi^{2}_{1} + \psi^{2}_{2} \right) + \psi_{1}\psi_{2}\cos\!\left(3 \omega t\right)
 	\end{align*}
+	where \( \omega = \pi^{2}\hbar / 2ma^{2} \).
+	\item Compute
+	\begin{align*}
+		\braket{x}\!\left( t \right) & = \int^{\infty}_{-\infty} x \abs{\Psi \!\left( x,t \right)}^{2} \, dx \\
+			   & = \frac{1}{2}\!\left[ \int^{\infty}_{-\infty} x \psi^{2}_{1} \, dx+ \int^{\infty}_{-\infty} x \psi^{2}_{2} \, dx \right] + \cos\!\left(3 \omega t\right)\int^{\infty}_{-\infty} x \psi_{1}\psi_{2} \, dx \\ 
+			   & = \frac{a}{2} + \frac{2}{a}\cos\!\left(3 \omega t\right)\int^{a}_{0} x \sin\!\left(\frac{\pi x}{a}\right)\sin\!\left(\frac{2 \pi x}{a}\right) \, dx
+	\end{align*}
+	Note that we change the integral bounds to \( \!\left[ 0,a \right] \) as the wave functions are explicitly defined on those bounds. Using the product-to-sum identity, continue with
+	\[
+		 = \frac{a}{2} + \frac{\cos\!\left(3 \omega t\right)}{a}\int^{a}_{0} x \!\left[ \cos\!\left(\frac{\pi x}{a}\right) - \cos\!\left(\frac{3 \pi x}{a}\right) \right] \, dx
+	\]
+	And then use the trick from problem 2.4 to see
+	\begin{align*}
+		\int^{a}_{0} x \cos\!\left(kx\right) \, dx = \frac{d }{d k}\int^{a}_{0} \sin\!\left(kx\right) \, dx & = -\frac{d }{d k}\!\left[ \frac{\cos\!\left(ka\right) - 1}{k} \right] \\
+							   & = - \!\left[ \frac{1 - \cos\!\left(ka\right)}{k^{2}} - \frac{a \sin\!\left(ka\right)}{k} \right] \\
+							   & = \frac{ak \sin\!\left(ka\right) + \cos\!\left(ka\right) - 1}{k^{2}}
+	\end{align*}
+	Evaluating for \( k = \pi / a \) and \( k = 3 \pi / a \), which causes the sines to vanish, compute
+	\begin{align*}
+		 & = \frac{a}{2} + \frac{\cos\!\left(3 \omega t\right)}{a}\!\left[ \!\left( \frac{\cos\!\left(\pi\right) - 1}{\pi^{2} / a^{2}} \right) - \!\left( \frac{\cos\!\left(3 \pi\right) - 1}{9 \pi^{2} / a^{2}} \right) \right] \\
+		 & = \frac{a}{2} + \frac{\cos\!\left(3 \omega t\right)}{a}\!\left[ -\frac{2a^{2}}{\pi^{2}} + \frac{2a^{2}}{9 \pi^{2}} \right] \\ 
+		 & = \frac{a}{2} - \frac{16a}{9 \pi^{2}}\cos\!\left(3 \omega t\right)
+	\end{align*}
+	Since \( 16 / 9 \pi^{2} \approx 0.18 \), our amplitude \( 16a / 9 \pi^{2} < a/2 \). The angular frequency is \( 3 \omega \). Now, evaluate \( \braket{x} \) at \( t = 0 \):
+	\[
+		\braket{x}\!\left( 0 \right) = 
+	\]
+	Observe further that \( \psi_{1}, \psi_{2} > 0 \) on \( \!\left[ 0,a/2 \right] \), while \( \psi_{1} > 0 \) but \( \psi_{2} < 0 \) on \( \!\left[ a/2,a \right] \). It follows that the density \( \abs{\Psi \!\left( x,t \right)}^{2} \) is heaviest along \( \!\left[ 0,a/2 \right] \), 
+	\item Compute, using the result that \( \braket{p} = m d \braket{x} / dt \):
+	\begin{align*}
+		\braket{p} & = m \frac{d \braket{x}}{d t} \\
+			   & = \frac{16ma}{3 \pi^{2}} \omega \sin\!\left(3 \omega t\right) \\
+			   & = \frac{16ma}{3 \pi^{2}}\frac{\pi^{2}\hbar}{2ma^{2}}\sin\!\left(3 \omega t\right) \\
+			   & = \frac{8 \hbar}{3a}\sin\!\left(3 \omega t\right)
+	\end{align*}
+	\item We compute the probabilities as the squared Fourier coefficients of projecting \( \psi_{n} \) onto \( \Psi \!\left( x,0 \right) \). Compute for \( n = 1, 2 \)
+	\[
+		c_{n} = \int^{a}_{0} \psi_{n}\Psi \!\left( x,0 \right) \, dx = A\int^{a}_{0} \psi_{n}\!\left[ \psi_{1} + \psi_{2} \right] \, dx = A \underbrace{\int^{a}_{0} \psi^{2}_{n} \, dx}_{= 1} = A
+	\]
+	Concretely, these coefficients are
+	\[
+		c_{1} = c_{2} = \frac{1}{\sqrt{2}}
+	\]
+	from which we can confirm
+	\[
+		\abs{c_{1}}^{2} + \abs{c_{2}}^{2} = \!\left( \frac{1}{\sqrt{2}} \right)^{2} + \!\left( \frac{1}{\sqrt{2}} \right)^{2} = 1 
+	\]
+	Accordingly, we can now conclude that we have a \( 1 / 2 \) probability of measuring the particle energy as \( E_{1} \) or \( E_{2} \). The expectation of the energy \( H \) is 
+	\begin{align*}
+		\braket{H} & = \abs{c_{1}}^{2}E_{1} + \abs{c_{2}}^{2}E_{2} \\
+			   & = \frac{1}{2} \cdot \frac{\pi^{2}\hbar^{2}}{2ma^{2}} + \frac{1}{2} \cdot \frac{4 \pi^{2}\hbar^{2}}{2ma^{2}} \\
+			   & = \frac{5 \pi^{2}\hbar^{2}}{4ma^{2}}
+	\end{align*}
+	which is the midpoint value in between \( E_{1} \) and \( E_{2} \), as anticipated as the probabilities of either state are equal.
 \end{enumerate}
+
+% QUESTION 6
+\qs{2.6}{Although the \textit{overall} phase constant of the wave function is of no physical significance (it cancels out whenever you calculate a measurable quantity), the \textit{relative} phase of the coefficients in Equation 2.17 \textit{does} matter. For example, suppose we change the relative phase of \( \psi_{1} \) and \( \psi_{2} \) in Problem 2.5:
+\[
+	\Psi \!\left( x,0 \right) = A \!\left[ \psi_{1}\!\left( x \right) + e^{i \phi}\psi_{2}\!\left( x \right) \right] 
+\]
+where \( \phi \) is some constant. Find \( \Psi \!\left( x,t \right) \), \( \abs{\Psi \!\left( x,t \right)}^{2} \), and \( \braket{x} \), and compare your results with what you got before. Study the special cases \( \phi = \pi / 2 \) and \( \phi = \pi \). (For a graphical exploration of this problem see the applet in footnote 7.)}
+
+Using the wave function conjugate
+
 
 
 \end{document}
