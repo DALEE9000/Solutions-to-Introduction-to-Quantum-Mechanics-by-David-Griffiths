@@ -308,9 +308,9 @@ where the state \( n = 1 \) comes closest to the uncertainty limit, namely
 	\end{align*}
 	Since \( 16 / 9 \pi^{2} \approx 0.18 \), our amplitude \( 16a / 9 \pi^{2} < a/2 \). The angular frequency is \( 3 \omega \). Now, evaluate \( \braket{x} \) at \( t = 0 \):
 	\[
-		\braket{x}\!\left( 0 \right) = 
+		\braket{x}\!\left( 0 \right) = \frac{a}{2} - \frac{16a}{9 \pi^{2}} \approx 0.32a
 	\]
-	Observe further that \( \psi_{1}, \psi_{2} > 0 \) on \( \!\left[ 0,a/2 \right] \), while \( \psi_{1} > 0 \) but \( \psi_{2} < 0 \) on \( \!\left[ a/2,a \right] \). It follows that the density \( \abs{\Psi \!\left( x,t \right)}^{2} \) is heaviest along \( \!\left[ 0,a/2 \right] \), 
+	which tells us that on average, the particle will be in the first half of the infinite square well at \( t = 0 \). Observe further that \( \psi_{1}, \psi_{2} > 0 \) on \( \!\left[ 0,a/2 \right] \), while \( \psi_{1} > 0 \) but \( \psi_{2} < 0 \) on \( \!\left[ a/2,a \right] \). It follows that the density \( \abs{\Psi \!\left( x,0 \right)}^{2} \) is heaviest along \( \!\left[ 0,a/2 \right] \), which probabilistically comports with our result for \( \braket{x}\!\left( 0 \right) \).
 	\item Compute, using the result that \( \braket{p} = m d \braket{x} / dt \):
 	\begin{align*}
 		\braket{p} & = m \frac{d \braket{x}}{d t} \\
@@ -346,7 +346,55 @@ where the state \( n = 1 \) comes closest to the uncertainty limit, namely
 \]
 where \( \phi \) is some constant. Find \( \Psi \!\left( x,t \right) \), \( \abs{\Psi \!\left( x,t \right)}^{2} \), and \( \braket{x} \), and compare your results with what you got before. Study the special cases \( \phi = \pi / 2 \) and \( \phi = \pi \). (For a graphical exploration of this problem see the applet in footnote 7.)}
 
-Using the wave function conjugate
+First let us normalize and compute \( A \). The wave function conjugate corresponding to the mixture of stationary states is
+\[
+	\Psi \!\left( x,0 \right)^{*} = A \!\left[ \psi_{1} + e^{-i \phi}\psi_{2} \right] 
+\]
+Then
+\begin{align*}
+	\abs{\Psi \!\left( x,0 \right)}^{2} & = \abs{A}^{2}\!\left[ \psi_{1} + e^{i \phi}\psi_{2} \right]\!\left[ \psi_{1} + e^{-i \phi}\psi_{2} \right] \\
+					    & = \abs{A}^{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + \psi_{1}\psi_{2}\!\left( e^{-i \phi} + e^{i \phi} \right) \right] \\
+					    & = \abs{A}^{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + 2\psi_{1}\psi_{2}\cos\!\left(\phi\right) \right]
+\end{align*}
+Lastly, integrate to find (appealing to orthogonality when integrating \( \psi_{1}\psi_{2} \) over the reals)
+\begin{align*}
+	\int^{\infty}_{-\infty} \abs{\Psi \!\left( x,0 \right)}^{2} \, dx & = \abs{A}^{2}\!\left[ \underbrace{\int^{\infty}_{-\infty} \psi^{2}_{1} \, dx}_{= 1} + \underbrace{\int^{\infty}_{-\infty} \psi^{2}_{2} \, dx}_{= 1} + 2\cos\!\left(\phi\right)\underbrace{\int^{\infty}_{-\infty} \psi_{1}\psi_{2} \, dx}_{= 0} \right] \\
+	 & = 2 \abs{A}^{2} = 1
+\end{align*}
+which ascertains that \( A = 1 / \sqrt{2} \) in the case of relative phase shift among a mixture of stationary states.
 
+Adding the time dependence produces
+\[
+	\Psi \!\left( x,t \right) = \frac{1}{\sqrt{2}} \!\left[ \psi_{1}e^{-iE_{1}t / \hbar} + \psi_{2}e^{-i \!\left( -\phi + E_{2}t / \hbar \right)} \right]
+\]
+Using the wave function conjugate
+\[
+	\Psi \!\left( x,t \right)^{*} = \frac{1}{\sqrt{2}} \!\left[ \psi_{1}e^{iE_{1}t / \hbar} + \psi_{2}e^{i \!\left( -\phi + E_{2}t / \hbar \right)} \right]
+\]
+Compute
+\begin{align*}
+	\abs{\Psi \!\left( x,t \right)}^{2} = \Psi^{*}\Psi & = \frac{1}{2}\!\left[ \psi_{1}e^{iE_{1}t / \hbar} + \psi_{2}e^{i \!\left( -\phi + E_{2}t / \hbar \right)} \right]\!\left[ \psi_{1}e^{-iE_{1}t / \hbar} + \psi_{2}e^{-i \!\left( -\phi + E_{2}t / \hbar \right)} \right] \\
+	 & = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + \psi_{1}\psi_{2}\!\left( e^{-i \!\left( -\phi + \!\left( E_{2} - E_{1} \right)t / \hbar \right)} + e^{i \!\left( -\phi + \!\left( E_{2} - E_{1} \right)t / \hbar \right)} \right) \right] \\
+	 & = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + 2\psi_{1}\psi_{2}\cos\!\left(\frac{\!\left( E_{2} - E_{1} \right)t}{\hbar} - \phi\right) \right] \\
+	 & = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + 2\psi_{1}\psi_{2}\cos\!\left(\frac{3 \pi^{2}\hbar t}{2ma^{2}} - \phi\right) \right] \\
+	 & = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} + 2\psi_{1}\psi_{2}\cos\!\left(3 \omega t - \phi\right) \right]
+\end{align*}
+where \( \omega = \pi^{2}\hbar / 2ma^{2} \). Lastly, the mean \( \braket{x} \):
+\begin{align*}
+	\braket{x}\!\left( t \right) & = \int^{\infty}_{-\infty} x \abs{\Psi \!\left( x,t \right)}^{2} \, dx \\
+		   & = \frac{1}{2}\!\left[ \int^{\infty}_{-\infty} x\psi^{2}_{1} \, dx + \int^{\infty}_{-\infty} x\psi^{2}_{2} \, dx + 2 \cos\!\left(3 \omega t - \phi\right)\int^{\infty}_{-\infty} x\psi_{1}\psi_{2} \, dx \right] \\ 
+		   & = \frac{1}{2}\!\left[ \frac{a}{2} + \frac{a}{2} + \frac{4}{a} \cos\!\left(3 \omega t - \phi\right)\int^{a}_{0} x \sin\!\left(\frac{\pi x}{a}\right)\sin\!\left(\frac{2 \pi x}{a}\right) \, dx \right] \\
+		   & = \frac{a}{2} + \frac{\cos\!\left(3 \omega t - \phi\right)}{a}\int^{a}_{0} x \!\left[ \cos\!\left(\frac{\pi x}{a}\right) - \cos\!\left(\frac{3 \pi x}{a}\right) \right] \, dx \\
+		   & = \frac{a}{2} - \frac{16a}{9 \pi^{2}}\cos\!\left(3 \omega t - \phi\right)
+\end{align*}
+All-in-all, the structure is preserved in the quantities, with the core difference being the phase shift of \( \phi \). Now, set \( \phi = \pi / 2 \). Then
+\[
+	\braket{x}\!\left( t \right) = \frac{a}{2} - \frac{16a}{9 \pi^{2}}\sin\!\left(3 \omega t\right) 
+\]
+At \( t = 0 \), \( \braket{x}\!\left( 0 \right) = a / 2 \), meaning at initial time the particle, on average, is at the midpoint of \( \!\left[ 0,a \right] \). Secondly, if \( \phi = \pi \), then
+\[
+	\braket{x}\!\left( t \right) = \frac{a}{2} + \frac{16a}{9 \pi^{2}}\cos\!\left(3 \omega t\right) 
+\]
+where at \( t = 0 \), \( \braket{x}\!\left( 0 \right) = a / 2 + 16a / 9 \pi^{2} \), meaning that at initial time the particle, on average, begins in the right-half of \( \!\left[ 0,a \right] \).
 
 \end{document}
