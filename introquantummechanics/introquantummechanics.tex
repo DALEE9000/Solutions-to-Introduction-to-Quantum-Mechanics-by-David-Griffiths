@@ -1157,7 +1157,7 @@ where \( \omega = \pi^{2}\hbar / 2ma^{2} \). Lastly, the mean \( \braket{x} \):
 		   & = \frac{a}{2} + \frac{\cos\!\left(3 \omega t - \phi\right)}{a}\int^{a}_{0} x \!\left[ \cos\!\left(\frac{\pi x}{a}\right) - \cos\!\left(\frac{3 \pi x}{a}\right) \right] \, dx \\
 		   & = \frac{a}{2} - \frac{16a}{9 \pi^{2}}\cos\!\left(3 \omega t - \phi\right)
 \end{align*}
-All-in-all, the structure is preserved in the quantities, with the core difference being the phase shift of \( \phi \). Now, set \( \phi = \pi / 2 \). Then
+All-in-all, the structure is preserved in the quantities, with the core difference being the phase shift of \( \phi \); the time evolution proceeds exactly the same but from different starting points. Now, set \( \phi = \pi / 2 \). Then
 \[
 	\braket{x}\!\left( t \right) = \frac{a}{2} - \frac{16a}{9 \pi^{2}}\sin\!\left(3 \omega t\right) 
 \]
@@ -1165,7 +1165,19 @@ At \( t = 0 \), \( \braket{x}\!\left( 0 \right) = a / 2 \), meaning at initial t
 \[
 	\braket{x}\!\left( t \right) = \frac{a}{2} + \frac{16a}{9 \pi^{2}}\cos\!\left(3 \omega t\right) 
 \]
-where at \( t = 0 \), \( \braket{x}\!\left( 0 \right) = a / 2 + 16a / 9 \pi^{2} \), meaning that at initial time the particle, on average, begins in the right-half of \( \!\left[ 0,a \right] \).
+where at \( t = 0 \), \( \braket{x}\!\left( 0 \right) = a / 2 + 16a / 9 \pi^{2} \), meaning that at initial time the particle, on average, begins in the right-half of \( \!\left[ 0,a \right] \). We may conduct the same exercise on \( \abs{\Psi \!\left( x,0 \right)}^{2} \); on \( \phi = \pi / 2 \) notice that the cross term vanishes, leaving us with
+\[
+	\abs{\Psi \!\left( x,0 \right)}^{2} = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} \right]
+\]
+and lastly, with \( \phi = \pi \) we have
+\[
+	\abs{\Psi \!\left( x,0 \right)}^{2} = \frac{1}{2}\!\left[ \psi^{2}_{1} + \psi^{2}_{2} - 2 \psi_{1}\psi_{2} \right] 
+\]
+We graph the probability density \( \abs{\Psi \!\left( x,0 \right)}^{2} \) for different values of \( \phi \) to see the phase shift in action.
+
+\begin{center}
+\includegraphics[width=1.0\textwidth]{../chap2/chap2ex2.6.pdf}
+\end{center}
 
 
 \end{document}
