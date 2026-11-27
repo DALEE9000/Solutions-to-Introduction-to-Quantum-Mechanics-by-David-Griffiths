@@ -409,4 +409,49 @@ We graph the probability density \( \abs{\Psi \!\left( x,0 \right)}^{2} \) for d
 \includegraphics[width=1.0\textwidth]{../chap2/chap2ex2.6.pdf}
 \end{center}
 
+% QUESTION 2.7
+\qs{2.7}{A particle in the infinite square well has the initial wave function
+\[
+	\Psi \!\left( x,0 \right) = \begin{cases}
+		Ax, & 0 \le x \le a/2 \\
+		A \!\left( a - x \right) & a/2 \le x \le a 
+	\end{cases} 
+\]
+\begin{enumerate}[label=(\alph*)]
+	\item Sketch \( \Psi \!\left( x,0 \right) \) and determine the constant \( A \).
+	\item Find \( \Psi \!\left( x,t \right) \).
+	\item What is the probability that a measurement of the energy would yield the value \( E_{1} \)?
+	\item Find the expectation value of the energy.
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item The wave function must satisfy
+	\[
+		\int^{\infty}_{-\infty} \abs{\Psi \!\left( x,0 \right)}^{2} \, dx = \int^{\infty}_{-\infty} \Psi^{*}\Psi \, dx = 1 
+	\]
+	so we compute
+	\begin{align*}
+		\abs{A}^{2}\!\left[ \int^{a/2}_{0} x^{2} \, dx + \int^{a}_{a/2} \!\left( a - x \right)^{2} \, dx \right] & = \abs{A}^{2}\!\left[ \frac{x^{3}}{3}\bigg|^{a/2}_{0} + \!\left( a^{2}x - ax^{2} + \frac{x^{3}}{3} \right)\bigg|^{a}_{a/2} \right] \\
+		 & = \abs{A}^{2}\!\left[ \frac{a^{3}}{24} + \frac{a^{3}}{3} - \frac{a^{3}}{2} + \frac{a^{3}}{4} - \frac{a^{3}}{24} \right] \\ 
+		 & = \abs{A}^{2}\frac{a^{3}}{12} = 1
+	\end{align*}
+	determining \( A = 2\sqrt{3} / a^{3/2} \). 
+	\begin{center}
+	\includegraphics[width=1.0\textwidth]{../chap2/chap2ex2.7a.pdf}
+	\end{center}
+	\item The role of the initial wave function is for us to be able to derive the Fourier coefficients \( c_{n} \), which will go in our expression for \( \Psi \!\left( x,t \right) \):
+	\[
+		\Psi \!\left( x,t \right) = \sum^{\infty}_{n=1} c_{n}\psi_{n}\!\left( x \right)e^{-iE_{n}t / \hbar} 
+	\]
+	where \( \psi_{n} \) corresponds to the stationary state for the infinite square potential well
+	\[
+		\psi_{n} = \sqrt{\frac{2}{a}}\sin\!\left(\frac{n \pi}{a}x\right) 
+	\]
+	To find the \( c_{n} \) coefficients we must project the initial wave function \( \Psi \!\left( x,0 \right) \) onto the vector space spanned by the \( \psi_{n} \) bases. We do this by computing
+	\begin{align*}
+		c_{n} & = A\sqrt{\frac{2}{a}}\!\left[ \int^{a/2}_{0} x\sin\!\left(\frac{n \pi}{a}x\right) \, dx + \int^{a}_{a/2} \!\left( a - x \right)\sin\!\left(\frac{n \pi}{a}x\right) \, dx \right] \\
+		      & = A \sqrt{\frac{2}{a}}\!\left[ \frac{}{} \right]
+	\end{align*}
+\end{enumerate}
+
 \end{document}
