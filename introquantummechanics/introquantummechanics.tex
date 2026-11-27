@@ -1217,12 +1217,139 @@ We graph the probability density \( \abs{\Psi \!\left( x,0 \right)}^{2} \) for d
 	\[
 		\psi_{n} = \sqrt{\frac{2}{a}}\sin\!\left(\frac{n \pi}{a}x\right) 
 	\]
+	and \( E_{n} \) is the energy level
+	\[
+		E_{n} = \frac{\pi^{2}n^{2}\hbar^{2}}{2ma^{2}} 
+	\]
 	To find the \( c_{n} \) coefficients we must project the initial wave function \( \Psi \!\left( x,0 \right) \) onto the vector space spanned by the \( \psi_{n} \) bases. We do this by computing
 	\begin{align*}
 		c_{n} & = A\sqrt{\frac{2}{a}}\!\left[ \int^{a/2}_{0} x\sin\!\left(\frac{n \pi}{a}x\right) \, dx + \int^{a}_{a/2} \!\left( a - x \right)\sin\!\left(\frac{n \pi}{a}x\right) \, dx \right] \\
-		      & = A \sqrt{\frac{2}{a}}\!\left[  \right]
+		      & = A \sqrt{\frac{2}{a}}\!\left( \!\left( -1 \right)^{n + 1} + 1 \right)\!\left[ -\frac{a^{2}}{2n \pi}\cos\!\left(\frac{n \pi}{2}\right) + \frac{a^{2}}{n^{2}\pi^{2}}\sin\!\left(\frac{n \pi}{2}\right) \right] \\
+		      & = \begin{cases}
+			      0, & n \text{ even} \\[10pt]
+			\displaystyle{\frac{2 \sqrt{6}}{a^{2}}\!\left[ -\frac{a^{2}}{n \pi}\cos\!\left(\frac{n \pi}{2}\right) + \frac{2a^{2}}{n^{2}\pi^{2}}\sin\!\left(\frac{n \pi}{2}\right) \right]}, & n \text{ odd}
+		      \end{cases}
 	\end{align*}
+	Now, when \( n \) is odd, observe that the cosine terms \( \cos\!\left(\pi / 2\right), \cos\!\left(3 \pi / 2\right) \), ... all vanish. Moreover, the sine terms \( \sin\!\left(\pi / 2\right), \sin\!\left(3 \pi / 2\right) \), ... alternate in sign. If we let \( n = 2k + 1 \) starting from \( k = 0 \), we can simplify the entire expression to
+	\[
+		c_{n} = \begin{cases}
+			0, & n = 2k \\[10pt]
+			\displaystyle{\frac{4 \sqrt{6}}{\!\left( 2k + 1 \right)^{2}\pi^{2}}\!\left( -1 \right)^{k}}, &  n = 2k + 1, k = 0, 1, ...
+		\end{cases} 
+	\]
+	Now we must ascertain that the sum of the \( \abs{c_{n}}^{2} \) equals 1. We have 
+	\[
+		\sum^{\infty}_{n=1} \abs{c_{n}}^{2} = \frac{96}{\pi^{4}}\sum^{\infty}_{k=0} \frac{1}{\!\left( 2k + 1 \right)^{4}}
+	\]
+	There is a general structure we can observe here, which is the \textbf{Riemann zeta function}:
+	\[
+		\zeta \!\left( s \right) = \sum^{\infty}_{n=1} \frac{1}{n^{s}} 
+	\]
+	which we can split into even and odd components
+	\[
+		\zeta \!\left( s \right) = \sum^{\infty}_{k = 0} \frac{1}{\!\left( 2k + 1 \right)^{s}} + \sum^{\infty}_{k = 1} \frac{1}{\!\left( 2k \right)^{s}}
+	\]
+	At \( s = 4 \), it is known\footnote{Leonhard Euler's Basel problem (1734) which determined \( \zeta \!\left( 2 \right) = \pi^{2} / 6 \), which was then generalizable for all even \( s \).} that \( \zeta \!\left( 4 \right) = \pi^{4} / 90 \). If we can establish the even portion, then the odd part will be clear to us. Compute
+	\[
+		\sum^{\infty}_{k=1} \frac{1}{\!\left( 2k \right)^{4}} = \frac{1}{2^{4}}\sum^{\infty}_{k=1} \frac{1}{k^{4}} = \frac{1}{2^{4}}\zeta \!\left( 4 \right) 
+	\]
+	then we can solve
+	\[
+		\sum^{\infty}_{k=0} \frac{1}{\!\left( 2k + 1 \right)^{4}} = \zeta \!\left( 4 \right) \!\left( 1 - \frac{1}{2^{4}} \right) = \frac{\pi^{4}}{90} \cdot \frac{15}{16} = \frac{\pi^{4}}{96}
+	\]
+	Substituting back into our sum, conclude
+	\[
+		\sum^{\infty}_{n=1} \abs{c_{n}}^{2} = \frac{96}{\pi^{4}} \cdot \frac{\pi^{4}}{96} = 1 
+	\]
+	Our time-dependent wave function is thus
+	\[
+		\Psi \!\left( x,t \right) = \frac{8 \sqrt{3}}{\pi^{2}\sqrt{a}}\sum^{\infty}_{k=0} \frac{\!\left( -1 \right)^{k}}{\!\left( 2k + 1 \right)^{2}}\sin\!\left(\frac{\!\left( 2k + 1 \right) \pi}{a}x\right)\exp\!\left( -\frac{i \!\left( 2k + 1 \right)^{2}\pi^{2}\hbar}{2ma^{2}}t \right)
+	\]
+	\item Compute 
+	\[
+		\abs{c_{1}}^{2} = \frac{96}{\pi^{4}} \approx 0.985
+	\]
+	So it is overwhelmingly probabilistic that the energy is measured to be in the ground state.
+	\item Set up the computation with
+	\[
+		\braket{H} = \sum^{\infty}_{n=1} \abs{c_{n}}^{2}E_{n} = \frac{48 \hbar^{2}}{ma^{2}\pi^{2}}\sum^{\infty}_{k=0} \frac{1}{\!\left( 2k + 1 \right)^{2}}
+	\]
+	Proceeding similarly with the Riemann zeta function for \( \zeta \!\left( 2 \right) \), and partitioning into even and odd components
+	\[
+		\zeta \!\left( 2 \right) = \sum^{\infty}_{k=0} \frac{1}{\!\left( 2k + 1 \right)^{2}} + \sum^{\infty}_{k=1} \frac{1}{\!\left( 2k \right)^{2}} = \frac{\pi^{2}}{6} 
+	\]
+	Computing \( \sum^{\infty}_{k=1} 1 / \!\left( 2k \right)^{2} = \!\left( 1 / 2^{2} \right)\sum^{\infty}_{k=1} 1 / k^{2} = \!\left( 1 / 2^{2} \right)\zeta \!\left( 2 \right) \), solve for the odd part as 
+	\[
+		\sum^{\infty}_{k=0} \frac{1}{\!\left( 2k + 1 \right)^{2}} = \zeta \!\left( 2 \right)\!\left( 1 - \frac{1}{2^{2}} \right) = \frac{\pi^{2}}{6} \cdot \frac{3}{4} = \frac{\pi^{2}}{8} 
+	\]
+	and substitute back into the expectation to conclude
+	\[
+		\braket{H} = \frac{48 \hbar^{2}}{ma^{2}\pi^{2}} \cdot \frac{\pi^{2}}{8} = \frac{6 \hbar^{2}}{ma^{2}} 
+	\]
+	A sanity check: \( E_{1} = \pi^{2}\hbar^{2} / 2ma^{2} \approx 4.93 \hbar^{2} / ma^{2} \). Since the ground-state energy is most probabilistic, it is intuitive that we should expect \( \braket{H} \) to be slightly above \( E_{1} \).
 \end{enumerate}
+
+\newpage
+\subsection{\textsf{2.3 - The Harmonic Oscillator}}
+\subsubsection{\textsf{2.3.1 - Algebraic Method}}
+
+% QUESTION 10
+\qs{2.10}{\begin{enumerate}[label=(\alph*)]
+	\item Construct \( \psi_{2}\!\left( x \right) \).
+	\item Sketch \( \psi_{0} \), \( \psi_{1} \), and \( \psi_{2} \).
+	\item Check the orthogonality of \( \psi_{0} \), \( \psi_{1} \), and \( \psi_{2} \), by explicit integration. \textit{Hint}: If you exploit the even-ness and odd-ness of the functions, there is really only one integral left to do.
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item From equation 2.67, we have
+	\begin{align*}
+		\psi_{2}\!\left( x \right) & = \frac{1}{\sqrt{2!}}\!\left( a_{+} \right)^{2}\psi_{0} \\
+			 & = \frac{1}{\sqrt{2}}a_{+}\psi_{1} \\
+			 & = \frac{1}{\sqrt{2}}\!\left[ \frac{1}{\sqrt{2 \hbar m \omega}}\!\left( -ip + m \omega x \right) \right]\psi_{1} \\
+			 & = \frac{1}{2 \sqrt{\hbar m \omega}}\!\left( -\hbar \frac{\partial }{\partial x} + m \omega x \right)\!\left( \frac{m \omega}{\pi \hbar} \right)^{1/4}\sqrt{\frac{2 m \omega}{\hbar}}xe^{-\frac{m \omega}{2 \hbar}x^{2}}
+	\end{align*}
+	One move for simplicity: define \( \xi = \sqrt{m \omega / \hbar}x \). Then by the chain rule
+	\[
+		\frac{\partial }{\partial x} = \frac{\partial \xi}{\partial x}\frac{\partial }{\partial \xi} = \sqrt{\frac{m \omega}{\hbar}}\frac{\partial }{\partial \xi}
+	\]
+	and making all the additional substitutions leaves us with
+	\begin{align*}
+		\psi_{2}\!\left( x \right) & = \frac{1}{\sqrt{2}}\!\left( \frac{m \omega}{\pi \hbar} \right)^{1/4}\!\left( -\frac{\partial }{\partial \xi} + \xi \right)\xi e^{-\xi^{2} / 2} \\
+			 & = \frac{1}{\sqrt{2}}\!\left( \frac{m \omega}{\pi \hbar} \right)^{1/4}\!\left[ \!\left( -e^{-\xi^{2}/2} + 2 \xi^{2}e^{-\xi^{2}/2} \right) \right] \\ 
+			 & = \frac{1}{\sqrt{2}}\!\left( \frac{m \omega}{\pi \hbar} \right)^{1/4}\!\left( 2 \xi^{2} - 1 \right)e^{-\xi^{2}/2} \\
+			 & = \frac{1}{\sqrt{2}}\!\left( \frac{m \omega}{\pi \hbar} \right)^{1/4}\!\left( \frac{2m \omega}{\hbar}x^{2} - 1 \right)e^{-m \omega x^{2} / 2 \hbar}
+	\end{align*}
+	\item  \leavevmode
+	\begin{center}
+	\includegraphics[width=0.85\textwidth]{../chap2/chap2ex2.10b.pdf}
+	\end{center}
+	\item Consider the integrands
+	\[
+		\psi_{0}\psi_{1} \propto \xi e^{-\xi^{2}}, \quad \psi_{1}\psi_{2} \propto \xi \!\left( 2 \xi^{2} - 1 \right)e^{-\xi^{2}}
+	\]
+	which are proportional to \( \psi_{0}\psi_{1} \) and \( \psi_{1}\psi_{2} \) by non-zero constants independent of \( x \). It is easy to verify that both integrands are odd; given that we integrate over the reals, the integral vanishes, and we have pairwise orthogonality.
+
+	This leaves 
+	\begin{align*}
+		\int^{\infty}_{-\infty} \psi_{0}\psi_{2} \, dx & \propto \int^{\infty}_{-\infty} \!\left( 2 \xi^{2} - 1 \right)e^{-\xi^{2}} \, d \xi \\
+		 & = 2 \!\left( \frac{\sqrt{\pi}}{2} \right) - \sqrt{\pi} \\ 
+		 & = 0
+	\end{align*}
+	Establishing orthogonality for the even wave functions too.
+\end{enumerate}
+
+% QUESTION 12
+\qs{2.12}{Find \( \braket{x} \), \( \braket{p} \), \( \braket{x^{2}} \), \( \braket{p^{2}} \), and \( \braket{T} \), for the \( n \)th stationary state of the harmonic oscillator, using the method of Example 2.5. Check that the uncertainty principle is satisfied.}
+
+As a reminder,
+\[
+	x = \sqrt{\frac{\hbar}{2m \omega}}\!\left( a_{+} + a_{-} \right), \quad p = i \sqrt{\frac{\hbar m \omega}{2}}\!\left( a_{+} - a_{-} \right) 
+\]
+Now we compute
+\begin{align*}
+	\braket{x} & =  \\
+	 &  \\ 
+\end{align*}
 
 
 \end{document}
