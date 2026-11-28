@@ -575,10 +575,80 @@ As a reminder,
 \[
 	x = \sqrt{\frac{\hbar}{2m \omega}}\!\left( a_{+} + a_{-} \right), \quad p = i \sqrt{\frac{\hbar m \omega}{2}}\!\left( a_{+} - a_{-} \right) 
 \]
-Now we compute
+Now we compute (appealing to orthogonality wherever appropriate)
 \begin{align*}
 	\braket{x} & = \int \psi_{n}^{*}x \psi_{n} \, dx \\
-	 & =  \\ 
+	 & = \sqrt{\frac{\hbar}{2m \omega}}\int \psi_{n}^{*}\!\left( a_{+} + a_{-} \right)\psi_{n} \, dx \\ 
+	 & = \sqrt{\frac{\hbar}{2m \omega}}\!\left[ \sqrt{n + 1}\int \psi_{n}^{*}\psi_{n + 1} \, dx + \sqrt{n}\int \psi_{n}^{*}\psi_{n - 1} \, dx \right] \\
+	 & = 0 \\
+	\braket{p} & = \int \psi_{n}^{*}p \psi_{n} \, dx \\
+		   & = i \sqrt{\frac{\hbar m \omega}{2}}\int \psi_{n}^{*}\!\left( a_{+} - a_{-} \right)\psi_{n} \, dx \\
+		   & = i \sqrt{\frac{\hbar m \omega}{2}}\!\left[ \sqrt{n + 1}\int \psi_{n}^{*}\psi_{n + 1} \, dx - \sqrt{n}\int \psi_{n}^{*}\psi_{n - 1} \, dx \right] \\
+		   & = 0 \\
+	\braket{x^{2}} & = \frac{\hbar}{m \omega}\!\left( n + \frac{1}{2} \right) \quad (\text{immediately follows Example 2.5}) \\
+	\braket{p^{2}} & = \int \psi_{n}^{*}p^{2}\psi_{n} \, dx \\
+		       & = -\frac{\hbar m \omega}{2}\int \psi_{n}^{*}\!\left( a_{+} - a_{-} \right)^{2}\psi_{n} \, dx \\
+		       & = -\frac{\hbar m \omega}{2}\int \psi_{n}^{*}\!\left[ \underbrace{\!\left( a_{+} \right)^{2}}_{\rightarrow 0} \underbrace{- \!\left( a_{+}a_{-} \right) - \!\left( a_{-}a_{+} \right)}_{\text{evaluate using eq. 2.65}} + \underbrace{\!\left( a_{-} \right)^{2}}_{\rightarrow 0} \right]\psi_{n} \, dx \\
+		       & = \frac{\hbar m \omega}{2}\!\left( 2n + 1 \right) \\
+		       & = \hbar m \omega \!\left( n + \frac{1}{2} \right) \\
+	\braket{T} & = \braket{\frac{p^{2}}{2m}} \\
+		   & = \frac{1}{2}\hbar \omega \!\left( n + \frac{1}{2} \right)
 \end{align*}
+As a sanity check, we know that \( \braket{T} + \braket{V} = E_{n} \) -- potential and kinetic energy for the \( n \)th stationary state must equal the corresponding energy. Indeed, we see
+\[
+	\braket{T} + \braket{V} = \frac{1}{2}\hbar \omega \!\left( n + \frac{1}{2} \right) + \frac{1}{2}\hbar \omega \!\left( n + \frac{1}{2} \right) = \hbar \omega \!\left( n + \frac{1}{2} \right) = E_{n} 
+\]
+
+To ensure that the uncertainty principle is not violated, check
+\begin{align*}
+	\sigma_{x} & = \sqrt{\braket{x^{2}} - \braket{x}^{2}} = \sqrt{\frac{\hbar}{m \omega}\!\left( n + \frac{1}{2} \right)} \\
+	\sigma_{p} & = \sqrt{\braket{p^{2}} - \braket{p}^{2}} = \sqrt{\hbar m \omega \!\left( n + \frac{1}{2} \right)} \\ 
+	\sigma_{x}\sigma_{p} & = \sqrt{\hbar^{2}\!\left( n + \frac{1}{2} \right)^{2}} = \hbar \!\left( n + \frac{1}{2} \right) \ge \frac{\hbar}{2}
+\end{align*}
+where equality holds only when \( n = 0 \), which is the ground state \( \psi_{0} \).
+
+\vspace{12pt}
+
+% QUESTION 13
+\qs{2.13}{A particle in the harmonic oscillator potential starts out in the state
+\[
+	\Psi \!\left( x,0 \right) = A \!\left[ 3 \psi_{0}\!\left( x \right) + 4 \psi_{1}\!\left( x \right) \right] 
+\]
+\begin{enumerate}[label=(\alph*)]
+	\item Find \( A \).
+	\item Construct \( \Psi \!\left( x,t \right) \) and \( \abs{\Psi \!\left( x,t \right)}^{2} \). Don't get too excited if \( \abs{\Psi \!\left( x,t \right)}^{2} \) oscillates at exactly the classical frequency; what would it have been had I specified \( \psi_{2}\!\left( x \right) \), instead of \( \psi_{1}\!\left( x \right) \)?
+	\item Find \( \braket{x} \) and \( \braket{p} \). Check that Ehrenfest's theorem (Equation 1.38) holds for this wave function.
+	\item If you measured the energy of this particle, what values might you get, and with what probabilities?
+\end{enumerate}}
+
+\begin{enumerate}[label=(\alph*)]
+	\item Compute
+	\begin{align*}
+		\int \abs{\Psi \!\left( x,0 \right)}^{2} \, dx & = \abs{A}^{2}\!\left[ 9 \underbrace{\int \psi_{0}^{2} \, dx}_{= 1} + \underbrace{24 \int \psi_{0}\psi_{1} \, dx}_{= 0} + 16 \underbrace{\int \psi_{1}^{2} \, dx}_{= 1} \right] \\
+		 & = \abs{A}^{2} 25 = 1 
+	\end{align*}
+	Implying \( A = 1 / 5 \).
+	\item Add in the time-dependency as 
+	\begin{align*}
+		\Psi \!\left( x,t \right) & = \frac{1}{5}\!\left( 3 \psi_{0}e^{-i E_{0}t / \hbar} + 4 \psi_{1}e^{-iE_{1}t / \hbar} \right) \\
+					  & = \frac{1}{5}\!\left( 3 \psi_{0}e^{-i \omega t / 2} + 4 \psi_{1}e^{-3i \omega t / 2} \right)
+	\end{align*}
+	Normalizing, compute
+	\begin{align*}
+		\abs{\Psi \!\left( x,t \right)}^{2} & = \Psi^{*}\Psi \\
+						    & = \frac{1}{25}\!\left[ \!\left( 3 \psi_{0}e^{-i \omega t / 2} + 4 \psi_{1}e^{-3i \omega t / 2} \right)\!\left( 3 \psi_{0}e^{i \omega t / 2} + 4 \psi_{1}e^{3i \omega t / 2} \right) \right] \\ 
+						    & = \frac{1}{25}\!\left[ 9 \psi_{0}^{2} + 16 \psi_{1}^{2} + 12 \psi_{0}\psi_{1}\!\left( e^{i \omega t} + e^{-i \omega t} \right) \right] \\
+						    & = \frac{1}{25}\!\left[ 9 \psi_{0}^{2} + 16 \psi_{1}^{2} + 24 \psi_{0}\psi_{1}\cos\!\left(\omega t\right) \right]
+	\end{align*}
+	That we observe the classical oscillation frequency is a result of having a mixture of adjacent states; in general if we had \( \psi_{n} \) and \( \psi_{n + 1} \), we would compute
+	\[
+		\psi_{n}\psi_{n + 1}\!\left( e^{i \!\left( E_{n} + E_{n + 1} \right) t / \hbar} + e^{-i \!\left( E_{n} + E_{n + 1} \right)t / \hbar} \right) = \psi_{n}\psi_{n + 1}\!\left( e^{2i \!\left( n + 1 \right)\omega t} + e^{-2i \!\left( n + 1 \right)\omega t} \right)
+	\]
+	if we specified \( \psi_{2} \) in lieu of \( \psi_{1} \), then the cross-terms would lead to
+	\[
+		12 \psi_{0}\psi_{2} \!\left( e^{2i \omega t} + e^{-2i \omega t} \right) = 24 \psi_{0}\psi_{2}\cos\!\left(2 \omega t\right) 
+	\]
+	in which \( \abs{\Psi \!\left( x,t \right)}^{2} \) would oscillate at twice that of the classical frequency.
+\end{enumerate}
 
 \end{document}
